@@ -4,9 +4,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './create/create.component';
-import {UserCanActivateService} from "./services/user-can-activate.service";
-import {NoAuthCanActivateService} from "./services/no-auth-can-activate.service";
-import { ModificationComponent } from './modification/modification.component';
+import { UserCanActivateService } from './services/user-can-activate.service';
+import { NoAuthCanActivateService } from './services/no-auth-can-activate.service';
 
 export const routes: Routes = [
   {
