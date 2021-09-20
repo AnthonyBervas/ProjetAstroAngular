@@ -61,5 +61,9 @@ export class ViewsService {
     });
   }
 
-  public addPlanet() {}
+  public lancerSimu(timestep: number, calc: boolean) {
+    return this.httpClient.post(this.url + '/lancerSimu', {
+      headers: this.headers,
+    });
+  }
 }
