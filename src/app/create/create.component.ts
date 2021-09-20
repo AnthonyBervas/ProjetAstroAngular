@@ -1,3 +1,5 @@
+import { ServiceCorpsCelesteService } from './../services/service-corps-celeste.service';
+import { Etoile } from './../model/etoile';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -15,7 +17,7 @@ export class CreateComponent implements OnInit {
   masse:FormControl;
   diametre:FormControl;
   param: string = '';
-  constructor(private fb: FormBuilder, private ar: ActivatedRoute, private router: Router) {
+  constructor(private ccService: ServiceCorpsCelesteService, private fb: FormBuilder, private ar: ActivatedRoute, private router: Router) {
     this.ar.queryParams.subscribe((params) => {
       if (params.source) {
         this.param = params.source;
@@ -42,6 +44,9 @@ export class CreateComponent implements OnInit {
   }
 
   createSystem(){
-
+    let etoile: Etoile =new Etoile (this.nom.value,this.masse.value,this.diametre.value);
+    this.ccService.create(etoile).subscribe((res) =>{
+      this.router.navigate(['/modification']);
+    });
   }
 }

@@ -1,21 +1,19 @@
-<nav>
-  <a
-    *ngIf="!log"
-    [routerLink]="['/inscription']"
-    routerLinkActive="active"
-    class="btn btn-link"
-  >inscription</a
-  >
-  <a
-    *ngIf="!log"
-    [routerLink]="['/compte']"
-    routerLinkActive="active"
-    class="btn btn-link"
-  >connexion</a
-  >
-  <button *ngIf="log" (click)="logout()" class="btn btn-link">
-    deconnexion
-  </button>
-</nav>
-<router-outlet></router-outlet>
-
+<div [style.background-color]="'black'">
+  <nav>
+    <a
+      *ngIf="!log"
+      [routerLink]="['/inscription']"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >inscription</a
+    >
+    <a
+      *ngIf="!log"
+      [routerLink]="['/compte']"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >connexion</a
+    >
+  </nav>
+  <router-outlet></router-outlet>
+</div>

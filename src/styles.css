@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: black;
+}
+
+#header {
+  display: flex;
+  flex-wrap: wrap;
+  height: 20%;
+  background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+  background-size: 30%;
+  color: lightyellow;
+}
+
+#center {
+  display: flex;
+  flex-wrap: wrap;
+  height: 115%;
+  margin-left: 450px;
+  margin-right: 500px;
+  text-align: center;
+}
+
+.row {
+  width: 105%;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 30%;
+  width: 100%;
+  background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+}
+
+#text {
+  display: flex;
+  flex-wrap: wrap;
+  color: lightyellow;
+}
+
+#fRight {
+  color: lightyellow;
+}
+
+#link {
+  color: white;
+}
+
+#active-link {
+  color: white;
+  background-color: #b1bdd4;
+}
+
+a {
+  color: white;
+}
+
+.boxFooter {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+}
+
+.boxFooterCenter {
+  left: 65%;
+}
