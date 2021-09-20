@@ -41,7 +41,7 @@ export class ServiceCorpsCelesteService {
     this.initHeaders();
     //console.log(corps);
     const obj = {
-      id: corps.id,
+      //id: corps.id,
       type: corps.type,
 
       nom: corps.nom,

@@ -1,1 +1,592 @@
-<p>modification works!</p>
+<style>
+  body {
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+  }
+
+  .middle {
+    border-left: solid 1px;
+    border-right: double 1px;
+    border-color: grey;
+    background-color: white;
+  }
+
+  .bottom {
+    border-left: solid 1px;
+    border-right: double 1px;
+    border-bottom: double 1px;
+    border-color: grey;
+    background-color: white;
+  }
+
+  #content {
+    margin-left: 10px;
+    color: white;
+  }
+
+  #tablestyle {
+    margin-left: 10px;
+    color: white;
+  }
+
+  #addFormPlan,
+  #updateFormPlan,
+  #addFormSat {
+    margin-left: 10px;
+    display: none;
+  }
+</style>
+
+<div id="content">
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-Plan"
+      role="tabpanel"
+      aria-labelledby="pills-Plan-tab"
+    >
+      <h1>Liste des Corps Celestes du systeme</h1>
+      <br />
+      <br />
+      <input
+        id="btnAddPlan"
+        type="button"
+        class="btn btn-success"
+        value="Ajouter"
+      />
+      <input id="filterPlan" placeholder="filtre" />
+      <table id="tablestyle" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <!-- <th>Type</th> -->
+            <th>Masse</th>
+            <th>Diametre</th>
+            <th>Position x</th>
+            <th>Position y</th>
+            <th>Vitesse x</th>
+            <th>Vitesse y</th>
+            <th>Parent</th>
+          </tr>
+        </thead>
+        <tbody id="contentTable">
+          <tr *ngFor="let corpsceleste of system">
+            <td>{{ corpsceleste.id }}</td>
+            <td>{{ corpsceleste.nomInit }}</td>
+            <!-- <td>${corpsceleste.DTYPE}</td> -->
+            <td>{{ corpsceleste.masseInit }}</td>
+            <td>{{ corpsceleste.diametreInit }}</td>
+            <td>{{ corpsceleste.xInit }}</td>
+            <td>{{ corpsceleste.yInit }}</td>
+            <td>{{ corpsceleste.vxInit }}</td>
+            <td>{{ corpsceleste.vyInit }}</td>
+
+            <td>
+              <p *ngIf="corpsceleste.parent">
+                {{ corpsceleste.parent.id }} :
+                {{ corpsceleste.parent.nomInit }}
+              </p>
+            </td>
+
+            <td>
+              <button
+                *ngIf="corpsceleste.id"
+                class="btn btn-warning"
+                (click)="updateCorps(corpsceleste.id)"
+                type="button"
+                class="btn btn-warning"
+                value="Modifier"
+              >
+                Modifier
+              </button>
+            </td>
+            <td>
+              <input
+                *ngIf="corpsceleste.id != 1"
+                onclick="addSat(corpsceleste)"
+                type="button"
+                class="btn btn-success"
+                value="Ajout Satellite"
+              />
+            </td>
+
+            <td>
+              <button
+                *ngIf="corpsceleste.id && corpsceleste.id > 1"
+                (click)="delete(corpsceleste.id)"
+                class="btn btn-danger"
+              >
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        *ngIf="
+          addFormPlan ||
+          addFormSat ||
+          updateFormPlan ||
+          updateFormSat ||
+          updateFormEtoile
+        "
+      >
+        <h3 *ngIf="addFormPlan">Ajouter une nouvelle planete</h3>
+        <h3 *ngIf="addFormSat">Ajouter un nouveau satellite</h3>
+        <h3 *ngIf="updateFormPlan">Modifier cette planete</h3>
+        <h3 *ngIf="updateFormSat">Modifier ce satellite</h3>
+        <h3 *ngIf="updateFormEtoile">Modifier cette étoile</h3>
+        <br />
+        <div class="form-control">
+          <input type="hidden" name="id" [(ngModel)]="corps.id" />
+          <label for="nom">Nom :</label>
+          <input
+            id="nom"
+            required
+            class="form-control"
+            [(ngModel)]="corps.nomInit"
+            type="text"
+            placeholder="Saisir le nom"
+          /><br />
+          <label for="masse">Masse :</label>
+          <input
+            id="masse"
+            required
+            class="form-control"
+            [(ngModel)]="corps.masseInit"
+            type="number"
+            placeholder="Saisir la masse (kg)"
+          /><br />
+          <label for="diametre">Diametre :</label>
+          <input
+            id="diametre"
+            required
+            class="form-control"
+            [(ngModel)]="corps.diametreInit"
+            type="number"
+            placeholder="Saisir le diametre (km)"
+          /><br />
+          <label for="x">x0 :</label>
+          <input
+            *ngIf="!updateFormEtoile"
+            id="x"
+            required
+            class="form-control"
+            [(ngModel)]="corps.xInit"
+            type="number"
+            placeholder="Saisir la coordonnee x0 (km)"
+          /><br />
+          <label for="y">y0 :</label>
+          <input
+            *ngIf="!updateFormEtoile"
+            id="y"
+            required
+            class="form-control"
+            [(ngModel)]="corps.yInit"
+            type="number"
+            placeholder="Saisir la coordonnee y0 (km)"
+          /><br />
+          <label for="vx">vx0 :</label>
+          <input
+            *ngIf="!updateFormEtoile"
+            id="vx"
+            required
+            class="form-control"
+            [(ngModel)]="corps.vxInit"
+            type="number"
+            placeholder="Saisir la vitesse vx0 (km/s)"
+          /><br />
+          <label for="vy">vy0 :</label>
+          <input
+            *ngIf="!updateFormEtoile"
+            id="vy"
+            required
+            class="form-control"
+            [(ngModel)]="corps.vyInit"
+            type="number"
+            placeholder="Saisir la vitesse vy0 (km/s)"
+          /><br />
+
+          <input
+            id="type"
+            required
+            class="form-control"
+            [(ngModel)]="corps.type"
+            type="hidden"
+            [value]="type"
+          /><br />
+
+          <input
+            id="add_id_parent"
+            type="hidden"
+            name="id_parent"
+            [value]="idParent"
+          />
+
+          <input class="btn btn-success" (click)="save()" />
+        </div>
+      </div>
+      <!-- <div id="addFormPlan">
+        <h3>Ajouter nouvelle planete</h3>
+        <br />
+        <form action="addPlanet" method="post">
+          <input type="hidden" name="type_form" value="POST" />
+          <label for="add_nom">Nom :</label>
+          <input
+            required
+            id="add_nom"
+            name="nomInit"
+            type="text"
+            placeholder="Saisir le nom"
+          /><br />
+          <label for="add_masse">Masse :</label>
+          <input
+            required
+            id="add_masse"
+            name="masseInit"
+            type="number"
+            placeholder="Saisir la masse (kg)"
+          /><br />
+          <label for="add_taille">Diametre :</label>
+          <input
+            required
+            id="add_diametre"
+            name="diametreInit"
+            type="number"
+            placeholder="Saisir le diametre (km)"
+          /><br />
+          <label for="add_x">x0 :</label>
+          <input
+            required
+            id="add_x"
+            name="xInit"
+            type="number"
+            placeholder="Saisir la coordonnee x0 (km)"
+          /><br />
+          <label for="add_y">y0 :</label>
+          <input
+            required
+            id="add_y"
+            name="yInit"
+            type="number"
+            placeholder="Saisir la coordonnee y0 (km)"
+          /><br />
+          <label for="add_vx">vx0 :</label>
+          <input
+            required
+            id="add_vx"
+            name="vxInit"
+            type="number"
+            placeholder="Saisir la vitesse vx0 (km/s)"
+          /><br />
+          <label for="add_vy">vy0 :</label>
+          <input
+            required
+            id="add_vy"
+            name="vyInit"
+            type="number"
+            placeholder="Saisir la vitesse vy0 (km/s)"
+          /><br />
+          <label for="add_type"></label>
+          <input
+            id="add_type"
+            type="hidden"
+            name="typeInit"
+            value="Planete"
+          /><br />
+          <label for="add_id_parent"></label>
+          <input id="add_id_parent" type="hidden" name="id_parent" value="1" />
+
+          <input
+            class="btn btn-success"
+            type="submit"
+            name="ajouter"
+            value="Ajouter"
+          />
+        </form>
+      </div>
+
+      <div id="addFormSat">
+        <h3>Ajouter nouveau satellite</h3>
+        <br />
+        <form action="addSat" method="post">
+          <input type="hidden" name="type_form" value="POST" />
+          <label for="add_nom">Nom :</label>
+          <input
+            required
+            id="sat_add_nom"
+            name="nomInit"
+            type="text"
+            placeholder="Saisir le nom"
+          /><br />
+          <label for="add_masse">Masse :</label>
+          <input
+            required
+            id="sat_add_masse"
+            name="masseInit"
+            type="number"
+            placeholder="Saisir la masse (kg)"
+          /><br />
+          <label for="add_taille">Diametre :</label>
+          <input
+            required
+            id="sat_add_diametre"
+            name="diametreInit"
+            type="number"
+            placeholder="Saisir le diametre (km)"
+          /><br />
+          <label for="add_x">x0 :</label>
+          <input
+            required
+            id="sat_add_x"
+            name="xInit"
+            type="number"
+            placeholder="Saisir la coordonnee x0 (km)"
+          /><br />
+          <label for="add_y">y0 :</label>
+          <input
+            required
+            id="sat_add_y"
+            name="yInit"
+            type="number"
+            placeholder="Saisir la coordonnee y0 (km)"
+          /><br />
+          <label for="add_vx">vx0 :</label>
+          <input
+            required
+            id="sat_add_vx"
+            name="vxInit"
+            type="number"
+            placeholder="Saisir la vitesse vx0 (km/s)"
+          /><br />
+          <label for="add_vy">vy0 :</label>
+          <input
+            required
+            id="sat_add_vy"
+            name="vyInit"
+            type="number"
+            placeholder="Saisir la vitesse vy0 (km/s)"
+          /><br />
+          <label for="add_type"></label>
+          <input
+            id="sat_add_type"
+            type="hidden"
+            name="typeInit"
+            value="Satellite"
+          /><br />
+          <label for="add_id_parent"></label>
+          <input id="sat_add_id_parent" type="hidden" name="id_parent" />
+
+          <input
+            class="btn btn-success"
+            type="submit"
+            name="ajouter"
+            value="Ajouter"
+          />
+        </form>
+      </div>
+
+      <div id="updateFormEtoile">
+        <h3>Modifier l'etoile</h3>
+        <form action="updateEtoile" method="post">
+          <input type="hidden" name="type_form" value="PUT" />
+          <input type="hidden" id="update_id_etoile" name="id" />
+          <label for="update_nom">Nom :</label>
+          <input
+            required
+            id="etoile_update_nom"
+            name="nomInit"
+            type="text"
+            placeholder="Saisir le nom"
+          /><br />
+          <label for="update_masse">Masse :</label>
+          <input
+            required
+            id="etoile_update_masse"
+            name="masseInit"
+            type="number"
+            placeholder="Saisir la masse (km)"
+          /><br />
+          <label for="update_taille">Diametre :</label>
+          <input
+            required
+            id="etoile_update_diametre"
+            name="diametreInit"
+            type="number"
+            placeholder="Saisir le diametre (km)"
+          /><br />
+          <input
+            class="btn btn-warning"
+            type="submit"
+            name="modifier"
+            value="Modifier"
+          />
+        </form>
+      </div>
+
+      <div id="updateFormPlan">
+        <h3>Modifier la planete</h3>
+        <form action="updateCorps" method="post">
+          <input type="hidden" name="type_form" value="PUT" />
+          <input type="hidden" id="update_id_plan" name="id" />
+          <label for="update_nom">Nom :</label>
+          <input
+            required
+            id="update_nom"
+            name="nomInit"
+            type="text"
+            placeholder="Saisir le nom"
+          /><br />
+          <label for="update_masse">Masse :</label>
+          <input
+            required
+            id="update_masse"
+            name="masseInit"
+            type="number"
+            placeholder="Saisir la masse (km)"
+          /><br />
+          <label for="update_taille">Diametre :</label>
+          <input
+            required
+            id="update_diametre"
+            name="diametreInit"
+            type="number"
+            placeholder="Saisir le diametre (km)"
+          /><br />
+          <input
+            type="hidden"
+            id="update_type"
+            value="Planete"
+            name="typeInit"
+          />
+          <input
+            type="hidden"
+            id="update_parent_id"
+            name="id_parent"
+            value="1"
+          />
+          <label for="update_x">x0 :</label>
+          <input
+            required
+            id="update_x"
+            name="xInit"
+            type="number"
+            placeholder="Saisir la coordonnee x0 (km)"
+          /><br />
+          <label for="update_y">y0 :</label>
+          <input
+            required
+            id="update_y"
+            name="yInit"
+            type="number"
+            placeholder="Saisir la coordonnee y0 (km)"
+          /><br />
+          <label for="update_vx">vx0 :</label>
+          <input
+            required
+            id="update_vx"
+            name="vxInit"
+            type="number"
+            placeholder="Saisir la vitesse vx0 (km/s)"
+          /><br />
+          <label for="update_vy">vy0 :</label>
+          <input
+            required
+            id="update_vy"
+            name="vyInit"
+            type="number"
+            placeholder="Saisir la vitesse vy0 (km/s)"
+          /><br />
+          <input
+            class="btn btn-warning"
+            type="submit"
+            name="modifier"
+            value="Modifier"
+          />
+        </form>
+      </div>
+
+      <div id="updateFormSat">
+        <h3>Modifier le satellite</h3>
+        <form action="updateCorps" method="post">
+          <input type="hidden" name="type_form" value="PUT" />
+          <input type="hidden" id="sat_update_id_plan" name="id" />
+          <label for="update_nom">Nom :</label>
+          <input
+            required
+            id="sat_update_nom"
+            name="nomInit"
+            type="text"
+            placeholder="Saisir le nom"
+          /><br />
+          <label for="update_masse">Masse :</label>
+          <input
+            required
+            id="sat_update_masse"
+            name="masseInit"
+            type="number"
+            placeholder="Saisir la masse (km)"
+          /><br />
+          <label for="update_taille">Diametre :</label>
+          <input
+            required
+            id="sat_update_diametre"
+            name="diametreInit"
+            type="number"
+            placeholder="Saisir le diametre (km)"
+          /><br />
+          <input
+            type="hidden"
+            id="sat_update_type"
+            value="Satellite"
+            name="typeInit"
+          />
+          <label for="update_x">x0 :</label>
+          <input
+            required
+            id="sat_update_x"
+            name="xInit"
+            type="number"
+            placeholder="Saisir la coordonnee x0 (km)"
+          /><br />
+          <label for="update_y">y0 :</label>
+          <input
+            required
+            id="sat_update_y"
+            name="yInit"
+            type="number"
+            placeholder="Saisir la coordonnee y0 (km)"
+          /><br />
+          <label for="update_vx">vx0 :</label>
+          <input
+            required
+            id="sat_update_vx"
+            name="vxInit"
+            type="number"
+            placeholder="Saisir la vitesse vx0 (km/s)"
+          /><br />
+          <label for="update_vy">vy0 :</label>
+          <input
+            required
+            id="sat_update_vy"
+            name="vyInit"
+            type="number"
+            placeholder="Saisir la vitesse vy0 (km/s)"
+          /><br />
+
+          <input
+            class="btn btn-warning"
+            type="submit"
+            name="modifier"
+            value="Modifier"
+          />
+        </form>
+      </div> -->
+
+      <br />
+      <a style="color: yellow" href="menu">Retour</a>
+    </div>
+  </div>
+</div>
