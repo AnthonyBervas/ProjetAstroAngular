@@ -13,6 +13,7 @@ export class ServiceCorpsCelesteService {
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<CorpsCeleste[]> {
+    this.initHeaders();
     return this.httpClient.get<CorpsCeleste[]>(this.url);
   }
 
@@ -41,7 +42,7 @@ export class ServiceCorpsCelesteService {
     this.initHeaders();
     //console.log(corps);
     const obj = {
-      id: corps.id,
+      //id: corps.id,
       type: corps.type,
 
       nom: corps.nom,
