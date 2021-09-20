@@ -49,12 +49,15 @@
       <h1>Liste des Corps Celestes du systeme</h1>
       <br />
       <br />
-      <input
-        id="btnAddPlan"
-        type="button"
+      <button
         class="btn btn-success"
+        (click)="addPlan()"
+        type="button"
         value="Ajouter"
-      />
+        id="btnAddPlan"
+      >
+        Ajouter une planete
+      </button>
       <input id="filterPlan" placeholder="filtre" />
       <table id="tablestyle" class="table table-striped">
         <thead>
