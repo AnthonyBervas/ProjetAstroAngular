@@ -1,35 +1,35 @@
 export class CorpsCeleste {
-  private _id?: number;
-  private _type?: string;
+  private _id?: number | undefined;
+  private _type?: string | undefined;
 
-  private _nom?: string;
-  private _nomInit?: string;
+  private _nom?: string | undefined;
+  private _nomInit?: string | undefined;
 
-  private _G?: number = 6.6743e-20;
-  private _GInit?: number = 6.6743e-20;
+  private _G?: number | undefined = 6.6743e-20;
+  private _GInit?: number | undefined = 6.6743e-20;
 
-  private _masse?: number;
-  private _masseInit?: number;
+  private _masse?: number | undefined;
+  private _masseInit?: number | undefined;
 
-  private _diametre?: number;
-  private _diametreInit?: number;
+  private _diametre?: number | undefined;
+  private _diametreInit?: number | undefined;
 
-  private _x?: number;
-  private _xInit?: number;
+  private _x?: number | undefined;
+  private _xInit?: number | undefined;
 
-  private _y?: number;
-  private _yInit?: number;
+  private _y?: number | undefined;
+  private _yInit?: number | undefined;
 
-  private _vx?: number;
-  private _vxInit?: number;
+  private _vx?: number | undefined;
+  private _vxInit?: number | undefined;
 
-  private _vy?: number;
-  private _vyInit?: number;
+  private _vy?: number | undefined;
+  private _vyInit?: number | undefined;
 
-  private _etat?: boolean = true;
-  private _etatInit?: boolean = true;
+  private _etat?: boolean | undefined = true;
+  private _etatInit?: boolean | undefined = true;
 
-  private _parent?: CorpsCeleste;
+  private _parent?: CorpsCeleste | undefined;
 
   constructor(
     nom?: string,
@@ -66,7 +66,7 @@ export class CorpsCeleste {
    * Getter nom
    * @return {string}
    */
-  public get nom(): string {
+  public get nom(): string | undefined {
     return this._nom;
   }
 
@@ -74,7 +74,7 @@ export class CorpsCeleste {
    * Setter nom
    * @param {string} value
    */
-  public set nom(value: string) {
+  public set nom(value: string | undefined) {
     this._nom = value;
   }
 
@@ -82,7 +82,7 @@ export class CorpsCeleste {
    * Getter nomInit
    * @return {string}
    */
-  public get nomInit(): string {
+  public get nomInit(): string | undefined {
     return this._nomInit;
   }
 
@@ -90,7 +90,7 @@ export class CorpsCeleste {
    * Setter nomInit
    * @param {string} value
    */
-  public set nomInit(value: string) {
+  public set nomInit(value: string | undefined) {
     this._nomInit = value;
   }
 
@@ -113,7 +113,7 @@ export class CorpsCeleste {
    * Getter type
    * @return {string}
    */
-  public get type(): string {
+  public get type(): string | undefined {
     return this._type;
   }
 
@@ -121,7 +121,7 @@ export class CorpsCeleste {
    * Getter G
    * @return {number}
    */
-  public get G(): number {
+  public get G(): number | undefined {
     return this._G;
   }
 
@@ -129,7 +129,7 @@ export class CorpsCeleste {
    * Getter GInit
    * @return {number}
    */
-  public get GInit(): number {
+  public get GInit(): number | undefined {
     return this._GInit;
   }
 
@@ -137,7 +137,7 @@ export class CorpsCeleste {
    * Getter masse
    * @return {number}
    */
-  public get masse(): number {
+  public get masse(): number | undefined {
     return this._masse;
   }
 
@@ -145,7 +145,7 @@ export class CorpsCeleste {
    * Getter masseInit
    * @return {number}
    */
-  public get masseInit(): number {
+  public get masseInit(): number | undefined {
     return this._masseInit;
   }
 
@@ -153,7 +153,7 @@ export class CorpsCeleste {
    * Getter diametre
    * @return {number}
    */
-  public get diametre(): number {
+  public get diametre(): number | undefined {
     return this._diametre;
   }
 
@@ -161,7 +161,7 @@ export class CorpsCeleste {
    * Getter diametreInit
    * @return {number}
    */
-  public get diametreInit(): number {
+  public get diametreInit(): number | undefined {
     return this._diametreInit;
   }
 
@@ -169,7 +169,7 @@ export class CorpsCeleste {
    * Getter x
    * @return {number}
    */
-  public get x(): number {
+  public get x(): number | undefined {
     return this._x;
   }
 
@@ -177,7 +177,7 @@ export class CorpsCeleste {
    * Getter xInit
    * @return {number}
    */
-  public get xInit(): number {
+  public get xInit(): number | undefined {
     return this._xInit;
   }
 
@@ -185,7 +185,7 @@ export class CorpsCeleste {
    * Getter y
    * @return {number}
    */
-  public get y(): number {
+  public get y(): number | undefined {
     return this._y;
   }
 
@@ -193,7 +193,7 @@ export class CorpsCeleste {
    * Getter yInit
    * @return {number}
    */
-  public get yInit(): number {
+  public get yInit(): number | undefined {
     return this._yInit;
   }
 
@@ -201,7 +201,7 @@ export class CorpsCeleste {
    * Getter vx
    * @return {number}
    */
-  public get vx(): number {
+  public get vx(): number | undefined {
     return this._vx;
   }
 
@@ -209,7 +209,7 @@ export class CorpsCeleste {
    * Getter vxInit
    * @return {number}
    */
-  public get vxInit(): number {
+  public get vxInit(): number | undefined {
     return this._vxInit;
   }
 
@@ -217,7 +217,7 @@ export class CorpsCeleste {
    * Getter vy
    * @return {number}
    */
-  public get vy(): number {
+  public get vy(): number | undefined {
     return this._vy;
   }
 
@@ -225,7 +225,7 @@ export class CorpsCeleste {
    * Getter vyInit
    * @return {number}
    */
-  public get vyInit(): number {
+  public get vyInit(): number | undefined {
     return this._vyInit;
   }
 
@@ -233,7 +233,7 @@ export class CorpsCeleste {
    * Getter etat
    * @return {boolean}
    */
-  public get etat(): boolean {
+  public get etat(): boolean | undefined {
     return this._etat;
   }
 
@@ -241,7 +241,7 @@ export class CorpsCeleste {
    * Getter etatInit
    * @return {boolean}
    */
-  public get etatInit(): boolean {
+  public get etatInit(): boolean | undefined {
     return this._etatInit;
   }
 
@@ -249,7 +249,7 @@ export class CorpsCeleste {
    * Setter type
    * @param {string} value
    */
-  public set type(value: string) {
+  public set type(value: string | undefined) {
     this._type = value;
   }
 
@@ -257,7 +257,7 @@ export class CorpsCeleste {
    * Setter G
    * @param {number} value
    */
-  public set G(value: number) {
+  public set G(value: number | undefined) {
     this._G = value;
   }
 
@@ -265,7 +265,7 @@ export class CorpsCeleste {
    * Setter GInit
    * @param {number} value
    */
-  public set GInit(value: number) {
+  public set GInit(value: number | undefined) {
     this._GInit = value;
   }
 
@@ -273,7 +273,7 @@ export class CorpsCeleste {
    * Setter masse
    * @param {number} value
    */
-  public set masse(value: number) {
+  public set masse(value: number | undefined) {
     this._masse = value;
   }
 
@@ -281,7 +281,7 @@ export class CorpsCeleste {
    * Setter masseInit
    * @param {number} value
    */
-  public set masseInit(value: number) {
+  public set masseInit(value: number | undefined) {
     this._masseInit = value;
   }
 
@@ -289,7 +289,7 @@ export class CorpsCeleste {
    * Setter diametre
    * @param {number} value
    */
-  public set diametre(value: number) {
+  public set diametre(value: number | undefined) {
     this._diametre = value;
   }
 
@@ -297,7 +297,7 @@ export class CorpsCeleste {
    * Setter diametreInit
    * @param {number} value
    */
-  public set diametreInit(value: number) {
+  public set diametreInit(value: number | undefined) {
     this._diametreInit = value;
   }
 
@@ -305,7 +305,7 @@ export class CorpsCeleste {
    * Setter x
    * @param {number} value
    */
-  public set x(value: number) {
+  public set x(value: number | undefined) {
     this._x = value;
   }
 
@@ -313,7 +313,7 @@ export class CorpsCeleste {
    * Setter xInit
    * @param {number} value
    */
-  public set xInit(value: number) {
+  public set xInit(value: number | undefined) {
     this._xInit = value;
   }
 
@@ -321,7 +321,7 @@ export class CorpsCeleste {
    * Setter y
    * @param {number} value
    */
-  public set y(value: number) {
+  public set y(value: number | undefined) {
     this._y = value;
   }
 
@@ -329,7 +329,7 @@ export class CorpsCeleste {
    * Setter yInit
    * @param {number} value
    */
-  public set yInit(value: number) {
+  public set yInit(value: number | undefined) {
     this._yInit = value;
   }
 
@@ -337,7 +337,7 @@ export class CorpsCeleste {
    * Setter vx
    * @param {number} value
    */
-  public set vx(value: number) {
+  public set vx(value: number | undefined) {
     this._vx = value;
   }
 
@@ -345,7 +345,7 @@ export class CorpsCeleste {
    * Setter vxInit
    * @param {number} value
    */
-  public set vxInit(value: number) {
+  public set vxInit(value: number | undefined) {
     this._vxInit = value;
   }
 
@@ -353,7 +353,7 @@ export class CorpsCeleste {
    * Setter vy
    * @param {number} value
    */
-  public set vy(value: number) {
+  public set vy(value: number | undefined) {
     this._vy = value;
   }
 
@@ -361,7 +361,7 @@ export class CorpsCeleste {
    * Setter vyInit
    * @param {number} value
    */
-  public set vyInit(value: number) {
+  public set vyInit(value: number | undefined) {
     this._vyInit = value;
   }
 
@@ -369,7 +369,7 @@ export class CorpsCeleste {
    * Setter etat
    * @param {boolean} value
    */
-  public set etat(value: boolean) {
+  public set etat(value: boolean | undefined) {
     this._etat = value;
   }
 
@@ -377,7 +377,7 @@ export class CorpsCeleste {
    * Setter etatInit
    * @param {boolean} value
    */
-  public set etatInit(value: boolean) {
+  public set etatInit(value: boolean | undefined) {
     this._etatInit = value;
   }
 }

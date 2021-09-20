@@ -1,3 +1,4 @@
+import { ModificationComponent } from './modification/modification.component';
 import { Routes } from '@angular/router';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MenuComponent } from './menu/menu.component';
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'create',
     component: CreateComponent,
+  },
+  {
+    path: 'modification',
+    component: ModificationComponent,
   },
 ];

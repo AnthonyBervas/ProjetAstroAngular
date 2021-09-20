@@ -30,31 +30,31 @@ export class ViewsService {
       type: e.type,
 
       nom: e.nom,
-      nomInit: e.nomInit,
+      nomInit: e.nom,
 
       G: e.G,
-      GInit: e.GInit,
+      GInit: e.G,
 
       masse: e.masse,
-      masseInit: e.masseInit,
+      masseInit: e.masse,
 
       diametre: e.diametre,
-      diametreInit: e.diametreInit,
+      diametreInit: e.diametre,
 
       x: e.x,
-      xInit: e.xInit,
+      xInit: e.x,
 
       y: e.y,
-      yInit: e.yInit,
+      yInit: e.y,
 
       vx: e.vx,
-      vxInit: e.vxInit,
+      vxInit: e.vx,
 
       vy: e.vy,
-      vyInit: e.vyInit,
+      vyInit: e.vy,
 
       etat: e.etat,
-      etatInit: e.etatInit,
+      etatInit: e.etat,
     };
     return this.httpClient.post<CorpsCeleste>(this.url + '/createSystem', obj, {
       headers: this.headers,
