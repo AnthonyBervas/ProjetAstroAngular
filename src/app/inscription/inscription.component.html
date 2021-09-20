@@ -1,0 +1,52 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="form-group">
+    <label>login</label>
+    <input class="form-control" [formControl]="login" />
+    <div
+      *ngIf="login.dirty && login.hasError('required')"
+      class="alert alert-danger"
+    >
+      Login obligatoire
+    </div>
+    <div
+      *ngIf="login.dirty && login.hasError('minlength')"
+      class="alert alert-danger"
+    >
+      3 caractères minimum
+    </div>
+    <div
+      *ngIf="login.dirty && login.hasError('isPresent')"
+      class="alert alert-danger"
+    >
+      login deja utilise
+    </div>
+  </div>
+  <div class="form-group">
+    <label>mot de passe</label>
+    <input type="password" class="form-control" [formControl]="password" />
+    <div
+      *ngIf="password.dirty && password.hasError('required')"
+      class="alert alert-danger"
+    >
+      Mot de passe obligatoire
+    </div>
+    <div
+      *ngIf="password.dirty && password.hasError('required')"
+      class="alert alert-danger"
+    >
+      Password obligatoire
+    </div>
+    <div
+      *ngIf="password.dirty && password.hasError('minlength')"
+      class="alert alert-danger"
+    >
+      3 caratères minimum
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+      enregistrer
+    </button>
+  </div>
+</form>
+
