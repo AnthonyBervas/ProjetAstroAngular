@@ -23,7 +23,7 @@
   #header {
     display: flex;
     flex-wrap: wrap;
-    height: 20%;
+    height: 45px;
     background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
     background-size: 30%;
     color: lightyellow;
@@ -32,7 +32,7 @@
   #center {
     display: flex;
     flex-wrap: wrap;
-    height: 200%;
+    height: 700px;
     margin-left: 450px;
     margin-right: 500px;
     text-align: center;
@@ -45,8 +45,9 @@
   footer {
     display: flex;
     flex-wrap: wrap;
-    height: 30%;
+    height: 45px;
     width: 100%;
+    margin-top: 20px;
     background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
   }
 
@@ -110,7 +111,9 @@
               >
             </div>
             <div class="col-3 align-self-center d-flex justify-content-center">
-              <a id="link" class="nav-link" href="connect">Déconnexion</a>
+              <a *ngIf="log" (click)="logout()" class="btn btn-link">
+                Déconnexion
+              </a>
             </div>
           </div>
         </nav>
@@ -145,7 +148,7 @@
   </div>
 
   <footer>
-    <div [style.background-color]="'black'" class="boxFooter" id="fLeft">
+    <div class="boxFooter" id="fLeft">
       <a href="">Accueil </a> <a href="">Plan </a> <a href="">Contact </a>
       <a href="">CGU</a>
     </div>
