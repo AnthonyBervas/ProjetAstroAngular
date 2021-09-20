@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './create/create.component';
 import {UserCanActivateService} from "./services/user-can-activate.service";
 import {NoAuthCanActivateService} from "./services/no-auth-can-activate.service";
-import { ModificationComponent } from './modification/modification.component';
 
 export const routes: Routes = [
   {
@@ -32,9 +31,6 @@ export const routes: Routes = [
   {
     path: 'Modification',
     component: ModificationComponent,
-  },
-  {
-    path: 'modification',
-    component: ModificationComponent,
+    canActivate: [UserCanActivateService],
   },
 ];
