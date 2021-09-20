@@ -34,6 +34,7 @@ export class ModificationComponent implements OnInit {
     this.corpsCelesteService.getAll().subscribe((res) => {
       console.log(res);
       this.system = res;
+      console.log(this.system);
     });
   }
 

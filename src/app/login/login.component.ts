@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         );
         localStorage.setItem('role', ok.role);
         localStorage.setItem('login', this.login.value);
+        console.log(localStorage);
         this.router.navigate(['/menu']);
         },
       (ko) =>{
