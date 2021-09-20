@@ -9,13 +9,23 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {routes} from "./routes";
+import { CreateComponent } from './create/create.component';
+import { InitialisationComponent } from './initialisation/initialisation.component';
+import { ModificationComponent } from './modification/modification.component';
+import { ResultComponent } from './result/result.component';
+import { WaitComponent } from './wait/wait.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     InscriptionComponent,
-    MenuComponent
+    MenuComponent,
+    CreateComponent,
+    InitialisationComponent,
+    ModificationComponent,
+    ResultComponent,
+    WaitComponent
   ],
   imports: [
     BrowserModule,
