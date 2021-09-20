@@ -13,6 +13,7 @@ export class ServiceCorpsCelesteService {
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<CorpsCeleste[]> {
+    this.initHeaders();
     return this.httpClient.get<CorpsCeleste[]>(this.url);
   }
 
