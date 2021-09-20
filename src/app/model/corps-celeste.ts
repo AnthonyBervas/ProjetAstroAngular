@@ -1,45 +1,45 @@
 export class CorpsCeleste {
   private _id?: number;
-  private _type: string;
+  private _type?: string;
 
-  private _nom: string;
-  private _nomInit: string;
+  private _nom?: string;
+  private _nomInit?: string;
 
-  private _G: number = 6.6743e-20;
-  private _GInit: number = 6.6743e-20;
+  private _G?: number = 6.6743e-20;
+  private _GInit?: number = 6.6743e-20;
 
-  private _masse: number;
-  private _masseInit: number;
+  private _masse?: number;
+  private _masseInit?: number;
 
-  private _diametre: number;
-  private _diametreInit: number;
+  private _diametre?: number;
+  private _diametreInit?: number;
 
-  private _x: number;
-  private _xInit: number;
+  private _x?: number;
+  private _xInit?: number;
 
-  private _y: number;
-  private _yInit: number;
+  private _y?: number;
+  private _yInit?: number;
 
-  private _vx: number;
-  private _vxInit: number;
+  private _vx?: number;
+  private _vxInit?: number;
 
-  private _vy: number;
-  private _vyInit: number;
+  private _vy?: number;
+  private _vyInit?: number;
 
-  private _etat: boolean = true;
-  private _etatInit: boolean = true;
+  private _etat?: boolean = true;
+  private _etatInit?: boolean = true;
 
   private _parent?: CorpsCeleste;
 
   constructor(
-    nom: string,
-    type: string,
-    masseInit: number,
-    diametreInit: number,
-    xInit: number,
-    yInit: number,
-    vxInit: number,
-    vyInit: number,
+    nom?: string,
+    type?: string,
+    masseInit?: number,
+    diametreInit?: number,
+    xInit?: number,
+    yInit?: number,
+    vxInit?: number,
+    vyInit?: number,
     parent?: CorpsCeleste,
     id?: number
   ) {
