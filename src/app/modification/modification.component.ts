@@ -1,7 +1,9 @@
+import { Satellite } from './../model/satellite';
 import { CorpsCeleste } from './../model/corps-celeste';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ServiceCorpsCelesteService } from '../services/service-corps-celeste.service';
 import { ActivatedRoute } from '@angular/router';
+import { Planete } from '../model/planete';
 
 @Component({
   selector: 'app-modification',
@@ -42,7 +44,7 @@ export class ModificationComponent implements OnInit {
 
   delete(id: number) {
     this.corpsCelesteService.delete(id).subscribe((res) => {
-      this.deleteEvent.emit();
+      this.list();
     });
   }
 
@@ -58,13 +60,17 @@ export class ModificationComponent implements OnInit {
     if (this.corps.id) {
       this.corpsCelesteService.update(this.corps).subscribe((res) => {
         this.hideForms();
+        this.list();
       });
     } else {
       console.log('create');
       this.corpsCelesteService.create(this.corps).subscribe((res) => {
         this.hideForms();
+        this.list();
       });
     }
+
+    this.corps = new CorpsCeleste();
   }
 
   updateCorps(id: number) {
@@ -95,6 +101,7 @@ export class ModificationComponent implements OnInit {
   // sat_update_parent_id = parent_id;
   addSat(parent: CorpsCeleste) {
     this.hideForms();
+    this.corps = new Satellite();
     this.addFormSat = true;
     this.corps.type = 'Satellite';
     this.corps.parent = parent;
@@ -102,6 +109,7 @@ export class ModificationComponent implements OnInit {
 
   addPlan() {
     this.hideForms();
+    this.corps = new Planete();
     this.addFormPlan = true;
     this.corps.type = 'Planete';
     this.corpsCelesteService.get(1).subscribe((res) => {
