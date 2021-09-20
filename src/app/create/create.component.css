@@ -1,27 +1,28 @@
 body {
-	margin-left:10px;
-	background-color: black;
-	 color: white;
+  margin-left: 10px;
+  background-color: black;
+  color: lightyellow;
 }
 
 .middle {
-	border-left: solid 1px;
-	border-right: double 1px;
-	border-color: grey;
-	background-color: white;
+  border-left: solid 1px;
+  border-right: double 1px;
+  border-color: grey;
+  background-color: white;
 }
 
 .bottom {
-	border-left: solid 1px;
-	border-right: double 1px;
-	border-bottom: double 1px;
-	border-color: grey;
-	background-color: white;
+  border-left: solid 1px;
+  border-right: double 1px;
+  border-bottom: double 1px;
+  border-color: grey;
+  background-color: white;
 }
 #content {
-margin-left:10px;
-color: white;}
+  margin-left: 10px;
+  color: lightyellow;
+}
 
-#addEtoile{
-	margin-left:10px;
+#addEtoile {
+  margin-left: 10px;
 }

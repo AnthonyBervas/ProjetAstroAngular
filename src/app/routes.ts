@@ -1,7 +1,8 @@
-import {Routes} from "@angular/router";
-import {InscriptionComponent} from "./inscription/inscription.component";
-import {MenuComponent} from "./menu/menu.component";
-import {LoginComponent} from "./login/login.component";
+import { Routes } from '@angular/router';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MenuComponent } from './menu/menu.component';
+import { LoginComponent } from './login/login.component';
+import { CreateComponent } from './create/create.component';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'compte',
     component: LoginComponent,
-  }
-]
+  },
+  {
+    path: 'create',
+    component: CreateComponent,
+  },
+];
