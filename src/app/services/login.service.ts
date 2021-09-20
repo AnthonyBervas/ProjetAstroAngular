@@ -21,7 +21,7 @@ export class LoginService {
       'Content-Type': 'application/json',
       Authorization: `Basic ${info}`,
     });
-    return this.http.get(this.url, {headers: headers})
+    return this.http.get(this.url, {headers: headers});
   }
 
   public inscription(compte: Object): Observable<any>{
