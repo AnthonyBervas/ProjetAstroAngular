@@ -1,0 +1,27 @@
+body {
+	margin-left:10px;
+	background-color: black;
+	 color: white;
+}
+
+.middle {
+	border-left: solid 1px;
+	border-right: double 1px;
+	border-color: grey;
+	background-color: white;
+}
+
+.bottom {
+	border-left: solid 1px;
+	border-right: double 1px;
+	border-bottom: double 1px;
+	border-color: grey;
+	background-color: white;
+}
+#content {
+margin-left:10px;
+color: white;}
+
+#addEtoile{
+	margin-left:10px;
+}
