@@ -1,1 +1,47 @@
-<p>initialisation works!</p>
+<title>Initialisation</title>
+
+<body>
+	<div id="init">
+		<h1>Initialisation</h1>
+
+		<div id="addFormPlan">
+			<h3>Entrez les conditions de la simulation</h3>
+			<form (ngSubmit)="lancerSimu()" [formGroup]="form">
+				<input type="hidden" name="type_form" value="POST">
+        <div class="form-group">
+        <label
+					for="add_timestep">Nombre de timestep (1 timestep = 1 jour)
+					:</label>
+          <input required id="add_timestep" name="timestep" type="number"
+					placeholder="Nombre de timestep" [formControl]="timestep"><br>
+        </div>
+        <div class="form-group">
+          <label
+            for="add_calc">Voulez-vous des calculs simplifiés :</label>
+          <input
+            id="Oui" name="calc" type="radio" [formControl]="oui">
+          <label for="True" >Oui</label>
+          <input id="Non" name="calc" type="radio" [formControl]="non">
+          <label for="False" >Non</label>
+          <br>
+        </div>
+        <div class="form-group">
+          <input id="btnLanceSim" class="btn btn-success"
+            type="submit" name="ajouter" value="Demarrer la simulation">
+        </div>
+			</form>
+			<audio id="musiqueAttente" loop
+			src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"></audio>
+		</div>
+
+	</div>
+	<div id="attente" display="none">
+		<h1>Veuillez patienter...</h1>
+		<br> <img id="image" width="1500" height="800"
+			src="http://localhost:8080/projetAstro/img/TPT1.png" />
+
+	</div>
+
+
+
+</body>
