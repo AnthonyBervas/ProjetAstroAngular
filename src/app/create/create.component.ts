@@ -1,4 +1,8 @@
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -6,10 +10,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-
-  constructor() { }
+  form:FormGroup;
+  nom:FormControl;
+  masse:FormControl;
+  diametre:FormControl;
+  param: string = '';
+  constructor(private fb: FormBuilder, private ar: ActivatedRoute, private router: Router) {
+    this.ar.queryParams.subscribe((params) => {
+      if (params.source) {
+        this.param = params.source;
+      }
+    });
+    this.nom = this.fb.control('',[
+      Validators.required,
+    ]);
+    this.masse = this.fb.control('',[
+      Validators.required,
+    ]);
+    this.diametre = this.fb.control('',[
+      Validators.required,
+    ]);
+    this.form = this.fb.group({
+        nom: this.nom,
+        masse: this.masse,
+        diametre: this.diametre,
+      }
+    )
+  }
 
   ngOnInit(): void {
   }
 
+  createSystem(){
+
+  }
 }
