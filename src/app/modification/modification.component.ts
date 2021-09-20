@@ -68,34 +68,43 @@ export class ModificationComponent implements OnInit {
 
   updateCorps(id: number) {
     this.corpsCelesteService.get(id).subscribe((res) => {
+      this.corps = res;
       this.hideForms();
-      this.updateFormPlan = true;
-      // this.type = 'Planete';
-      // this.idParent = 1;
-      this.ar.params.subscribe((params) => {
-        if (params.id) {
-          this.corpsCelesteService.get(params.id).subscribe((res) => {
-            this.corps = res;
-          });
-        }
-      });
+      if (this.corps.type == 'Sattelite') {
+        this.updateFormSat = true;
+      }
+      if (this.corps.type == 'Etoile') {
+        this.updateFormEtoile = true;
+      }
 
-      // sat_update_nom.value = nom;
-      // sat_update_masse.value = parseInt(masse);
-      // sat_update_diametre.value = parseInt(diametre);
-      // sat_update_x.value = parseInt(x);
-      // sat_update_y.value = parseInt(y);
-      // sat_update_vx.value = parseInt(vx);
-      // sat_update_vy.value = parseInt(vy);
-      // sat_update_id_plan.value = id;
-      // sat_update_parent_id = parent_id;
+      if (this.corps.type == 'Planete') {
+        this.updateFormPlan = true;
+      }
     });
   }
 
+  // sat_update_nom.value = nom;
+  // sat_update_masse.value = parseInt(masse);
+  // sat_update_diametre.value = parseInt(diametre);
+  // sat_update_x.value = parseInt(x);
+  // sat_update_y.value = parseInt(y);
+  // sat_update_vx.value = parseInt(vx);
+  // sat_update_vy.value = parseInt(vy);
+  // sat_update_id_plan.value = id;
+  // sat_update_parent_id = parent_id;
   addSat(parent: CorpsCeleste) {
     this.hideForms();
     this.addFormSat = true;
     this.corps.type = 'Satellite';
     this.corps.parent = parent;
+  }
+
+  addPlan() {
+    this.hideForms();
+    this.addFormPlan = true;
+    this.corps.type = 'Planete';
+    this.corpsCelesteService.get(1).subscribe((res) => {
+      this.corps.parent = res;
+    });
   }
 }
