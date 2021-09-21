@@ -4,6 +4,7 @@ import { Etoile } from './etoile';
 export class Planete extends CorpsCeleste {
   constructor(
     nom?: string,
+    type?: string,
     masse?: number,
     diametre?: number,
     x?: number,
@@ -13,6 +14,6 @@ export class Planete extends CorpsCeleste {
     parent?: Etoile,
     id?: number | undefined
   ) {
-    super(nom, 'Planete', masse, diametre, x, y, vx, vy, parent, id);
+    super(nom, type, masse, diametre, x, y, vx, vy, parent, id);
   }
 }

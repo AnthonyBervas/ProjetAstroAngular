@@ -4,6 +4,7 @@ import { CorpsCeleste } from './corps-celeste';
 export class Satellite extends CorpsCeleste {
   constructor(
     nom?: string,
+    type?: string,
     masse?: number,
     diametre?: number,
     x?: number,
@@ -13,6 +14,6 @@ export class Satellite extends CorpsCeleste {
     parent?: Planete,
     id?: number | undefined
   ) {
-    super(nom, 'Satellite', masse, diametre, x, y, vx, vy, parent, id);
+    super(nom, type, masse, diametre, x, y, vx, vy, parent, id);
   }
 }

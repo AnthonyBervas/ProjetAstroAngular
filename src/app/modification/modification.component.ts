@@ -44,6 +44,7 @@ export class ModificationComponent implements OnInit {
   delete(id: number) {
     this.corpsCelesteService.delete(id).subscribe((res) => {
       this.deleteEvent.emit();
+      this.hideForms();
       this.list();
     });
   }
@@ -57,16 +58,21 @@ export class ModificationComponent implements OnInit {
   }
 
   save() {
+    console.log(this.corps);
     if (this.corps.id) {
+      console.log('dans if');
       this.corpsCelesteService.update(this.corps).subscribe((res) => {
+        console.log('apres update');
         this.hideForms();
         this.list();
+        this.corps = new CorpsCeleste();
       });
     } else {
       console.log('create');
       this.corpsCelesteService.create(this.corps).subscribe((res) => {
         this.hideForms();
         this.list();
+        this.corps = new CorpsCeleste();
       });
     }
   }
@@ -75,7 +81,7 @@ export class ModificationComponent implements OnInit {
     this.corpsCelesteService.get(id).subscribe((res) => {
       this.corps = res;
       this.hideForms();
-      if (this.corps.type == 'Sattelite') {
+      if (this.corps.type == 'Satellite') {
         this.updateFormSat = true;
       }
       if (this.corps.type == 'Etoile') {
