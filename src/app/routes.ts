@@ -1,4 +1,3 @@
-import { ResultComponent } from './result/result.component';
 import { ModificationComponent } from './modification/modification.component';
 import { Routes } from '@angular/router';
 import { InscriptionComponent } from './inscription/inscription.component';
