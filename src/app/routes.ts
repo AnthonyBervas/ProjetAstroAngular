@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './create/create.component';
 import { UserCanActivateService } from './services/user-can-activate.service';
 import { NoAuthCanActivateService } from './services/no-auth-can-activate.service';
+import { InitialisationComponent } from './initialisation/initialisation.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,11 @@ export const routes: Routes = [
   {
     path: 'result',
     component: ResultComponent,
+    canActivate: [UserCanActivateService],
+  },
+  {
+    path: 'initialisation',
+    component: InitialisationComponent,
     canActivate: [UserCanActivateService],
   },
 ];

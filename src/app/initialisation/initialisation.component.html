@@ -1,7 +1,7 @@
 <title>Initialisation</title>
 
 <body>
-  <div id="init">
+  <div *ngIf="!attente">
     <h1>Initialisation</h1>
 
     <div id="addFormPlan">
@@ -28,13 +28,13 @@
           <br />
         </div>
         <div class="form-group">
-          <input
+          <button
+            (click)="lancerSimu()"
             id="btnLanceSim"
             class="btn btn-success"
-            type="submit"
-            name="ajouter"
-            value="Demarrer la simulation"
-          />
+          >
+            Demarrer la simulation
+          </button>
         </div>
       </form>
       <audio
@@ -44,14 +44,14 @@
       ></audio>
     </div>
   </div>
-  <div id="attente" display="none">
+  <div *ngIf="attente">
     <h1>Veuillez patienter...</h1>
     <br />
     <img
       id="image"
       width="1500"
       height="800"
-      src="http://localhost:8080/projetAstro/img/TPT1.png"
+      src="http://localhost:8080/projetAstro/img/TPT{{ cptImage }}.png"
     />
   </div>
 </body>

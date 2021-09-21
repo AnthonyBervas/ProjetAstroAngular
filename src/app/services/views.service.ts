@@ -2,7 +2,7 @@ import { ServiceCorpsCelesteService } from './service-corps-celeste.service';
 import { Etoile } from './../model/etoile';
 import { CorpsCeleste } from './../model/corps-celeste';
 import { Observable } from 'rxjs';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -60,10 +60,28 @@ export class ViewsService {
       headers: this.headers,
     });
   }
-
+  //{ params: params },
   public lancerSimu(timestep: number, calc: boolean) {
-    return this.httpClient.post(this.url + '/lancerSimu', {
-      headers: this.headers,
-    });
+    console.log('debut service');
+    let params = new HttpParams();
+    params = params.append('timestep', timestep);
+    params = params.append('calc', calc);
+    console.log('fin service');
+    return this.httpClient.post(
+      this.url + '/lancerSimu',
+      {
+        headers: this.headers,
+      },
+      { params: params }
+
+      //'http://localhost:8080/projetAstro/api/views/lancerSimu?timestep=10&calc=true',
+      // +
+      // timestep +
+      // '&calc=' +
+      // calc,
+      // {
+      //   headers: this.headers,
+      // }
+    );
   }
 }
