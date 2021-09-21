@@ -1,3 +1,4 @@
+import { CanActivate } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -8,8 +9,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class ResultComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   private canvas: ElementRef<HTMLCanvasElement>;
-  public w = window.innerWidth * 0.9;
-  public h = window.innerHeight * 0.9;
+
+  public w = 1600;
+  public h = 800;
+
   public positions: number[][] = [
     [0, 0],
     [0, 1],
@@ -21,9 +24,21 @@ export class ResultComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  affichage() {
     this.ctx = this.canvas.nativeElement.getContext('2d');
+    this.ctx.strokeStyle = 'black';
+    this.ctx.lineWidth = 1;
     this.ctx.fillStyle = 'red';
     this.ctx.fillRect(0, 0, 10, 10);
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 0);
+    this.ctx.lineTo(this.w / 4, this.h / 4);
+    this.ctx.moveTo(this.w / 4, this.h / 4);
+    this.ctx.lineTo(this.w / 2, this.h / 4);
+
+    this.ctx.stroke();
+    this.ctx.closePath();
   }
 }

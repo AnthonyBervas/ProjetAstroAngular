@@ -103,6 +103,7 @@
             ></div>
             <div class="col-4 align-self-center d-flex justify-content-center">
               <a id="link" class="nav-link" href="menu">Retour</a>
+              <button (click)="affichage()">Resultat</button>
             </div>
             <div
               class="col-4 align-self-center d-flex justify-content-center"
@@ -116,7 +117,8 @@
     <canvas
       #canvas
       width="{{ w }}"
-      height="{{ h }}"
+      height="{{ h }}
+      "
       style="background-color: white"
     >
     </canvas>
