@@ -14,6 +14,11 @@ import { InitialisationComponent } from './initialisation/initialisation.compone
 import { ModificationComponent } from './modification/modification.component';
 import { ResultComponent } from './result/result.component';
 import { WaitComponent } from './wait/wait.component';
+import {CommonModule} from "@angular/common";
+import {PlotlyModule} from "angular-plotly.js";
+import * as PlotlyJS from 'plotly.js-dist-min';
+
+PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
@@ -33,6 +38,8 @@ import { WaitComponent } from './wait/wait.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    CommonModule,
+    PlotlyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

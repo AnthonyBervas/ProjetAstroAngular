@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {PositionService} from "../services/position.service";
+import {Position} from "../model/position";
 
 @Component({
   selector: 'app-result',
@@ -6,24 +8,56 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./result.component.css'],
 })
 export class ResultComponent implements OnInit {
-  @ViewChild('canvas', { static: true })
-  private canvas: ElementRef<HTMLCanvasElement>;
-  public w = window.innerWidth * 0.9;
-  public h = window.innerHeight * 0.9;
-  public positions: number[][] = [
-    [0, 0],
-    [0, 1],
-    [1, 1],
-    [1, 0],
-  ];
 
-  private ctx: CanvasRenderingContext2D;
+  positions: Position[][] = [];
+  data: number[][][] = [];
+  dataListX: number[] = [];
+  dataListY: number[] = [];
+  graph: any;
 
-  constructor() {}
+  constructor(private positionService: PositionService) {}
 
   ngOnInit(): void {
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(0, 0, 10, 10);
+    this.getData();
+  }
+
+  getData() {
+    this.positionService.getPosition().subscribe((pos) =>{
+    this.positions = pos;
+    console.log(this.positions);
+    this.formatData(this.positions);
+    this.plotData();
+    });
+    console.log("1");
+  }
+
+  formatData(positions: Position[][]){
+    console.log("2");
+    positions.forEach((element) =>{
+      console.log("3");
+      this.dataListX = [];
+      this.dataListY = [];
+      console.log(element);
+
+      element.forEach((posi) =>{
+        console.log(posi);
+        this.dataListX.push(posi.x);
+        this.dataListY.push(posi.y);
+      });
+      this.data.push([this.dataListX,this.dataListY]);
+    });
+    console.log("4");
+    console.log(this.data);
+  }
+
+  plotData(){
+  this.graph = {
+    data: [
+      {x: this.data[0][0], y: this.data[0][1], type: 'scatter', mode: 'points', marker: {color: 'red'}},
+      {x: this.data[1][0], y: this.data[1][1], type: 'scatter', mode: 'points', marker: {color: 'blue'}}
+    ],
+    layout: {width: 1500, height: 1500, title: 'A Fancy Simulation'}
+  };
+  return this.graph;
   }
 }
