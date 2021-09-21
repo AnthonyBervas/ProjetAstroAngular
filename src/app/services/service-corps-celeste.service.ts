@@ -1,3 +1,6 @@
+import { Etoile } from './../model/etoile';
+import { Satellite } from './../model/satellite';
+import { Planete } from './../model/planete';
 import { CorpsCeleste } from './../model/corps-celeste';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -40,7 +43,7 @@ export class ServiceCorpsCelesteService {
 
   public create(corps: CorpsCeleste): Observable<CorpsCeleste> {
     this.initHeaders();
-    //console.log(corps);
+    console.log(corps);
     const obj = {
       //id: corps.id,
       type: corps.type,
@@ -74,15 +77,51 @@ export class ServiceCorpsCelesteService {
 
       parent: corps.parent,
     };
-    return this.httpClient.post<CorpsCeleste>(this.url, obj, {
-      headers: this.headers,
-    });
+    if (corps.type == 'Planete') {
+      return this.httpClient.post<Planete>(this.url, obj, {
+        headers: this.headers,
+      });
+    } else if (corps.type == 'Satellite') {
+      return this.httpClient.post<Satellite>(this.url, obj, {
+        headers: this.headers,
+      });
+    } else if (corps.type == 'Etoile') {
+      return this.httpClient.post<Etoile>(this.url, obj, {
+        headers: this.headers,
+      });
+    } else {
+      return this.httpClient.post<CorpsCeleste>(this.url, obj, {
+        headers: this.headers,
+      });
+    }
   }
 
   public update(corps: CorpsCeleste): Observable<CorpsCeleste> {
     this.initHeaders();
-    return this.httpClient.put<CorpsCeleste>(this.url + '/' + corps.id, corps, {
-      headers: this.headers,
-    });
+    console.log('dans update');
+    if (corps.type == 'Planete') {
+      return this.httpClient.put<Planete>(this.url + '/' + corps.id, corps, {
+        headers: this.headers,
+      });
+    } else if (corps.type == 'Satellite') {
+      return this.httpClient.put<Satellite>(this.url + '/' + corps.id, corps, {
+        headers: this.headers,
+      });
+    } else if (corps.type == 'Etoile') {
+      return this.httpClient.put<Etoile>(this.url + '/' + corps.id, corps, {
+        headers: this.headers,
+      });
+    } else {
+      return this.httpClient.put<CorpsCeleste>(
+        this.url + '/' + corps.id,
+        corps,
+        {
+          headers: this.headers,
+        }
+      );
+    }
+    // return this.httpClient.put<CorpsCeleste>(this.url + '/' + corps.id, corps, {
+    //   headers: this.headers,
+    // });
   }
 }

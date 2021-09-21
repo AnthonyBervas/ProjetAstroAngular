@@ -108,7 +108,7 @@
             <td>
               <input
                 *ngIf="corpsceleste.id != 1"
-                onclick="addSat(corpsceleste)"
+                (click)="addSat(corpsceleste)"
                 type="button"
                 class="btn btn-success"
                 value="Ajout Satellite"
@@ -218,7 +218,6 @@
             class="form-control"
             [(ngModel)]="corps.type"
             type="hidden"
-            [value]="type"
           /><br />
 
           <input
