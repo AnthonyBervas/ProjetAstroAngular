@@ -1,5 +1,7 @@
 import { CanActivate } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {PositionService} from "../services/position.service";
+import {Position} from "../model/position";
 
 @Component({
   selector: 'app-result',
@@ -7,38 +9,56 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./result.component.css'],
 })
 export class ResultComponent implements OnInit {
-  @ViewChild('canvas', { static: true })
-  private canvas: ElementRef<HTMLCanvasElement>;
 
-  public w = 1600;
-  public h = 800;
+  positions: Position[][] = [];
+  data: number[][][] = [];
+  dataListX: number[] = [];
+  dataListY: number[] = [];
+  graph: any;
 
-  public positions: number[][] = [
-    [0, 0],
-    [0, 1],
-    [1, 1],
-    [1, 0],
-  ];
+  constructor(private positionService: PositionService) {}
 
-  private ctx: CanvasRenderingContext2D;
+  ngOnInit(): void {
+    this.getData();
+  }
 
-  constructor() {}
+  getData() {
+    this.positionService.getPosition().subscribe((pos) =>{
+    this.positions = pos;
+    console.log(this.positions);
+    this.formatData(this.positions);
+    this.plotData();
+    });
+    console.log("1");
+  }
 
-  ngOnInit(): void {}
+  formatData(positions: Position[][]){
+    console.log("2");
+    positions.forEach((element) =>{
+      console.log("3");
+      this.dataListX = [];
+      this.dataListY = [];
+      console.log(element);
 
-  affichage() {
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-    this.ctx.strokeStyle = 'black';
-    this.ctx.lineWidth = 1;
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(0, 0, 10, 10);
-    this.ctx.beginPath();
-    this.ctx.moveTo(0, 0);
-    this.ctx.lineTo(this.w / 4, this.h / 4);
-    this.ctx.moveTo(this.w / 4, this.h / 4);
-    this.ctx.lineTo(this.w / 2, this.h / 4);
+      element.forEach((posi) =>{
+        console.log(posi);
+        this.dataListX.push(posi.x);
+        this.dataListY.push(posi.y);
+      });
+      this.data.push([this.dataListX,this.dataListY]);
+    });
+    console.log("4");
+    console.log(this.data);
+  }
 
-    this.ctx.stroke();
-    this.ctx.closePath();
+  plotData(){
+  this.graph = {
+    data: [
+      {x: this.data[0][0], y: this.data[0][1], type: 'scatter', mode: 'points', marker: {color: 'red'}},
+      {x: this.data[1][0], y: this.data[1][1], type: 'scatter', mode: 'points', marker: {color: 'blue'}}
+    ],
+    layout: {width: 1500, height: 1500, title: 'A Fancy Simulation'}
+  };
+  return this.graph;
   }
 }
