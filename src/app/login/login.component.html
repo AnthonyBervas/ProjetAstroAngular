@@ -14,9 +14,6 @@
 
 <style>
   body {
-    background-color: black;
-    background-image: url("http://localhost:8080/projetAstro/img/photofunky.gif");
-    background-repeat: no-repeat;
     background-size: 100%;
   }
 
@@ -58,7 +55,11 @@
     text-decoration: underline;
     cursor: pointer;
   }
-
+  #background {
+    background-image: url("http://localhost:8080/projetAstro/img/StarfieldSimulation.gif");
+    background-repeat: no-repeat;
+    background-size: 1500px;
+  }
   #Compte {
     margin-top: 10px;
   }
@@ -101,7 +102,7 @@
   }
 </style>
 
-<div class="container">
+<div class="container" id="background">
   <div class="alert alert-danger" *ngIf="message">Erreur d'identification</div>
   <form (ngSubmit)="submit()" [formGroup]="form">
     <div class="form-group">

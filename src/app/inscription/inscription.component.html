@@ -91,7 +91,11 @@
   #EnterLogin {
     width: 100%;
   }
-
+  #background {
+    background-image: url("http://localhost:8080/projetAstro/img/StarfieldSimulation.gif");
+    background-repeat: no-repeat;
+    background-size: 1500px;
+  }
   #EnterPassword {
     width: 100%;
   }
@@ -101,7 +105,7 @@
   }
 </style>
 
-<main class="container">
+<main class="container" id="background">
   <form (ngSubmit)="submit()" [formGroup]="form">
     <div class="form-group">
       <div class="row">
