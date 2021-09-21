@@ -1,4 +1,3 @@
-import { ResultComponent } from './result/result.component';
 import { ModificationComponent } from './modification/modification.component';
 import { Routes } from '@angular/router';
 import { InscriptionComponent } from './inscription/inscription.component';
@@ -32,11 +31,6 @@ export const routes: Routes = [
   {
     path: 'modification',
     component: ModificationComponent,
-    canActivate: [UserCanActivateService],
-  },
-  {
-    path: 'result',
-    component: ResultComponent,
     canActivate: [UserCanActivateService],
   },
 ];
