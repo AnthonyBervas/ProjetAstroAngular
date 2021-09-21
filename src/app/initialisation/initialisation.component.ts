@@ -17,6 +17,8 @@ export class InitialisationComponent implements OnInit {
   timestep: FormControl;
   calc: FormControl;
   param: string = '';
+  attente: boolean = false;
+  cptImage: number = 1;
   constructor(
     private fb: FormBuilder,
     private ar: ActivatedRoute,
@@ -39,13 +41,35 @@ export class InitialisationComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.attente = false;
+  }
+
+  playAudio() {
+    let audio = new Audio();
+    audio.src = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
+    audio.load();
+    audio.loop;
+    audio.play();
+  }
+
+  changerImage() {
+    this.cptImage++;
+    if (this.cptImage == 12) {
+      this.cptImage = 1;
+    }
+    return 1;
+  }
 
   lancerSimu() {
     let simple: boolean = false;
     if (this.calc) {
       simple = true;
     }
-    this.viewsService.lancerSimu(this.timestep.value, simple);
+    this.attente = true;
+    this.viewsService.lancerSimu(this.timestep.value, simple).subscribe();
+    this.playAudio();
+    window.setInterval(() => this.changerImage(), 2000);
+    //let interval = setInterval(this.changerImage(), 2000);
   }
 }
