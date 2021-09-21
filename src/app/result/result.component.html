@@ -31,11 +31,11 @@
   }
 
   #center {
+    align-items: center;
+    justify-items: center;
     display: flex;
     flex-wrap: wrap;
     height: 900px;
-    margin-left: 450px;
-    margin-right: 500px;
     text-align: center;
   }
 
@@ -113,7 +113,13 @@
     </div>
   </div>
   <div id="center">
-    <img alt="" src="" />
+    <canvas
+      #canvas
+      width="{{ w }}"
+      height="{{ h }}"
+      style="background-color: white"
+    >
+    </canvas>
   </div>
 </body>
 <footer>
