@@ -7,6 +7,7 @@ import { CreateComponent } from './create/create.component';
 import { UserCanActivateService } from './services/user-can-activate.service';
 import { NoAuthCanActivateService } from './services/no-auth-can-activate.service';
 import { InitialisationComponent } from './initialisation/initialisation.component';
+import { ResultComponent } from './result/result.component';
 
 export const routes: Routes = [
   {
