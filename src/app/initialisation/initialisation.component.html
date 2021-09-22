@@ -32,6 +32,7 @@
             (click)="lancerSimu()"
             id="btnLanceSim"
             class="btn btn-success"
+            [disabled]="form.invalid"
           >
             Demarrer la simulation
           </button>

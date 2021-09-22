@@ -19,6 +19,7 @@ export class InitialisationComponent implements OnInit {
   param: string = '';
   attente: boolean = false;
   cptImage: number = 1;
+  audio = new Audio();
   constructor(
     private fb: FormBuilder,
     private ar: ActivatedRoute,
@@ -34,7 +35,7 @@ export class InitialisationComponent implements OnInit {
       Validators.required,
       Validators.min(1),
     ]);
-    this.calc = this.fb.control('', [Validators.required]);
+    this.calc = this.fb.control('');
     this.form = this.fb.group({
       timestep: this.timestep,
       calc: this.calc,
@@ -46,11 +47,10 @@ export class InitialisationComponent implements OnInit {
   }
 
   playAudio() {
-    let audio = new Audio();
-    audio.src = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
-    audio.load();
-    audio.loop;
-    audio.play();
+    this.audio.src = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
+    this.audio.load();
+    this.audio.loop;
+    this.audio.play();
   }
 
   changerImage() {
@@ -67,7 +67,12 @@ export class InitialisationComponent implements OnInit {
       simple = true;
     }
     this.attente = true;
-    this.viewsService.lancerSimu(this.timestep.value, simple).subscribe();
+    this.viewsService
+      .lancerSimu(this.timestep.value, simple)
+      .subscribe((res) => {
+        this.router.navigate(['/result']);
+        this.audio.pause();
+      });
     this.playAudio();
     window.setInterval(() => this.changerImage(), 2000);
     //let interval = setInterval(this.changerImage(), 2000);
