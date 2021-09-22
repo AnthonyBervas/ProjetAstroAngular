@@ -33,8 +33,11 @@ export class CreateComponent implements OnInit {
       }
     });
     this.nom = this.fb.control('', [Validators.required]);
-    this.masse = this.fb.control('', [Validators.required]);
-    this.diametre = this.fb.control('', [Validators.required]);
+    this.masse = this.fb.control('', [Validators.required, Validators.min(1)]);
+    this.diametre = this.fb.control('', [
+      Validators.required,
+      Validators.min(1),
+    ]);
     this.form = this.fb.group({
       nom: this.nom,
       masse: this.masse,
