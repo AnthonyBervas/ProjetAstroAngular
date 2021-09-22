@@ -2,6 +2,7 @@ import { CanActivate } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {PositionService} from "../services/position.service";
 import {Position} from "../model/position";
+import {ServiceCorpsCelesteService} from "../services/service-corps-celeste.service";
 
 @Component({
   selector: 'app-result',
@@ -16,7 +17,7 @@ export class ResultComponent implements OnInit {
   dataListY: number[] = [];
   graph: any;
 
-  constructor(private positionService: PositionService) {}
+  constructor(private positionService: PositionService, private serviceCorpsCeleste: ServiceCorpsCelesteService) {}
 
   ngOnInit(): void {
     this.getData();
@@ -34,7 +35,6 @@ export class ResultComponent implements OnInit {
     positions.forEach((element) =>{
       this.dataListX = [];
       this.dataListY = [];
-
       element.forEach((posi) =>{
         this.dataListX.push(posi.x);
         this.dataListY.push(posi.y);
@@ -46,12 +46,17 @@ export class ResultComponent implements OnInit {
   plotData(){
   this.graph = {
     data: [
-      {x: 0, y: 0, type: 'scatter', mode: 'points', marker: {color: 'yellow'}}
+      {x: 0, y: 0, type: 'scatter', mode: 'points', marker: {color: 'yellow'}, visible: false}
     ],
-    layout: {width: 1500, height: 1500, title: 'A Fancy Simulation'}
+    layout: {width: 800, height: 800, title: 'A Spatial Simulation', xaxis:{title:{text:'Distance (km)'}}, yaxis:{title:{text:'Distance (km)'}}}
   };
+  let i: number = 1;
   this.dataFormat.forEach((res) =>{
-    this.graph.data.push({x: res[0], y: res[1], type: 'scatter', mode: 'points'});
+    this.serviceCorpsCeleste.get(i).subscribe((res1)=>{
+      let nameId: string = res1.nom;
+      this.graph.data.push({x: res[0], y: res[1], type: 'scatter', mode: 'points', name: nameId});
+    });
+    i++;
   });
   console.log(this.graph);
   return this.graph;
