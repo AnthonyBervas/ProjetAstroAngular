@@ -102,7 +102,7 @@
   }
 </style>
 
-<div class="container" id="background">
+<div class="container" id="background" [style.height]="h">
   <div class="alert alert-danger" *ngIf="message">Erreur d'identification</div>
   <form (ngSubmit)="submit()" [formGroup]="form">
     <div class="form-group">

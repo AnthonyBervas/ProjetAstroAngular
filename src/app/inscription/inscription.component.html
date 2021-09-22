@@ -17,7 +17,6 @@
     background-color: black;
     background-image: url("http://localhost:8080/projetAstro/img/photofunky.gif");
     background-repeat: no-repeat;
-    background-size: 100%;
   }
 
   .middle {
@@ -94,7 +93,7 @@
   #background {
     background-image: url("http://localhost:8080/projetAstro/img/StarfieldSimulation.gif");
     background-repeat: no-repeat;
-    background-size: 1500px;
+    background-size: 100%;
   }
   #EnterPassword {
     width: 100%;
@@ -105,7 +104,7 @@
   }
 </style>
 
-<main class="container" id="background">
+<main class="container" id="background" [style.height]="h">
   <form (ngSubmit)="submit()" [formGroup]="form">
     <div class="form-group">
       <div class="row">

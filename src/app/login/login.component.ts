@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {LoginService} from "../services/login.service";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
+  h: string = window.innerHeight + 'px';
   form: FormGroup;
   login: FormControl;
   password: FormControl;
@@ -26,16 +31,16 @@ export class LoginComponent implements OnInit {
     this.password = this.fb.control('', Validators.required);
     this.form = this.fb.group({
       login: this.login,
-      password: this.password
+      password: this.password,
     });
-    this.ar.queryParams.subscribe((params)=>{
+    this.ar.queryParams.subscribe((params) => {
       this.param = params.source;
     });
   }
 
-  submit(){
+  submit() {
     this.loginService.login(this.login.value, this.password.value).subscribe(
-      (ok) =>{
+      (ok) => {
         this.message = false;
         localStorage.setItem(
           'token',
@@ -45,14 +50,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('login', this.login.value);
         console.log(localStorage);
         this.router.navigate(['/menu']);
-        },
-      (ko) =>{
+      },
+      (ko) => {
         this.message = true;
       }
     );
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

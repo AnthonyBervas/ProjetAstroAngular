@@ -21,6 +21,9 @@ export class InitialisationComponent implements OnInit {
   cptImage: number = 1;
   source: string = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
   audio = new Audio();
+  h: string = window.innerHeight * 0.05 + 'px';
+  c: string = window.innerHeight * 0.9 + 'px';
+  f: string = window.innerHeight * 0.05 + 'px';
 
   constructor(
     private fb: FormBuilder,
@@ -46,6 +49,7 @@ export class InitialisationComponent implements OnInit {
 
   ngOnInit(): void {
     this.attente = false;
+    console.log(this.h);
   }
 
   playAudio() {
