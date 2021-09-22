@@ -11,7 +11,7 @@ import {Position} from "../model/position";
 export class ResultComponent implements OnInit {
 
   positions: Position[][] = [];
-  data: number[][][] = [];
+  dataFormat: number[][][] = [];
   dataListX: number[] = [];
   dataListY: number[] = [];
   graph: any;
@@ -25,40 +25,35 @@ export class ResultComponent implements OnInit {
   getData() {
     this.positionService.getPosition().subscribe((pos) =>{
     this.positions = pos;
-    console.log(this.positions);
     this.formatData(this.positions);
     this.plotData();
     });
-    console.log("1");
   }
 
   formatData(positions: Position[][]){
-    console.log("2");
     positions.forEach((element) =>{
-      console.log("3");
       this.dataListX = [];
       this.dataListY = [];
-      console.log(element);
 
       element.forEach((posi) =>{
-        console.log(posi);
         this.dataListX.push(posi.x);
         this.dataListY.push(posi.y);
       });
-      this.data.push([this.dataListX,this.dataListY]);
+      this.dataFormat.push([this.dataListX,this.dataListY]);
     });
-    console.log("4");
-    console.log(this.data);
   }
 
   plotData(){
   this.graph = {
     data: [
-      {x: this.data[0][0], y: this.data[0][1], type: 'scatter', mode: 'points', marker: {color: 'red'}},
-      {x: this.data[1][0], y: this.data[1][1], type: 'scatter', mode: 'points', marker: {color: 'blue'}}
+      {x: 0, y: 0, type: 'scatter', mode: 'points', marker: {color: 'yellow'}}
     ],
     layout: {width: 1500, height: 1500, title: 'A Fancy Simulation'}
   };
+  this.dataFormat.forEach((res) =>{
+    this.graph.data.push({x: res[0], y: res[1], type: 'scatter', mode: 'points'});
+  });
+  console.log(this.graph);
   return this.graph;
   }
 }
