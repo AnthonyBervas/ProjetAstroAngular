@@ -18,6 +18,9 @@ export class CreateComponent implements OnInit {
   masse: FormControl;
   diametre: FormControl;
   param: string = '';
+  h: string = window.innerHeight * 0.05 + 'px';
+  c: string = window.innerHeight * 0.9 + 'px';
+  f: string = window.innerHeight * 0.05 + 'px';
   constructor(
     private viewsService: ViewsService,
     private fb: FormBuilder,

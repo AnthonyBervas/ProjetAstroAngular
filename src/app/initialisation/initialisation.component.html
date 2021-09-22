@@ -1,96 +1,202 @@
 <title>Initialisation</title>
 
-<body>
-  <div *ngIf="!attente">
-    <h1>Initialisation</h1>
+<style>
+  body {
+    background-color: black;
+  }
 
-    <div id="addFormPlan">
-      <h3>Entrez les conditions de la simulation</h3>
-      <form (ngSubmit)="lancerSimu()" [formGroup]="form">
-        <input type="hidden" name="type_form" value="POST" />
-        <div class="form-group">
-          <label for="add_timestep"
-            >Nombre de timestep (1 timestep = 1 jour) :</label
-          >
+  #header {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+    background-size: 30%;
+    color: lightyellow;
+  }
+
+  #center {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 500px;
+    color: white;
+  }
+
+  .row {
+    width: 105%;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+    background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+  }
+
+  #text {
+    display: flex;
+    flex-wrap: wrap;
+    color: lightyellow;
+  }
+
+  #fRight {
+    color: lightyellow;
+  }
+
+  #link {
+    color: white;
+  }
+
+  #active-link {
+    color: white;
+    background-color: #b1bdd4;
+  }
+
+  a {
+    color: white;
+  }
+
+  .boxFooter {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+  }
+
+  .boxFooterCenter {
+    left: 65%;
+  }
+</style>
+
+<body>
+  <div id="site">
+    <div id="header" class="container" [style.height]="h">
+      <div class="row align-self-center">
+        <nav class="nav nav-pills nav-fill">
+          <div class="row">
+            <div
+              class="col-4 align-self-center d-flex justify-content-center"
+            ></div>
+            <div class="col-4 align-self-center d-flex justify-content-center">
+              <a id="link" class="nav-link" href="menu">Retour</a>
+            </div>
+            <div
+              class="col-4 align-self-center d-flex justify-content-center"
+            ></div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div id="center" [style.height]="c">
+    <div *ngIf="!attente">
+      <h1>Initialisation</h1>
+
+      <div id="addFormPlan">
+        <h3>Entrez les conditions de la simulation</h3>
+        <form (ngSubmit)="lancerSimu()" [formGroup]="form">
           <input
-            required
-            id="add_timestep"
-            name="timestep"
-            type="number"
-            placeholder="Nombre de timestep"
-            [formControl]="timestep"
-          /><br />
-        </div>
-        <div class="form-group">
-          <label for="add_calc">Voulez-vous des calculs simplifiés :</label>
-          <input id="Oui" name="calc" type="checkbox" [formControl]="calc" />
-          <label for="True">Oui</label>
-          <br />
-        </div>
-        <div class="form-group">
-          <button
-            (click)="lancerSimu()"
-            id="btnLanceSim"
-            class="btn btn-success"
-            [disabled]="form.invalid"
+            type="hidden"
+            name="type_form"
+            value="POST"
+            class="form-control"
+          />
+          <div class="form-group">
+            <label for="add_timestep"
+              >Nombre de timestep (1 timestep = 1 jour) :</label
+            >
+            <input
+              required
+              id="add_timestep"
+              name="timestep"
+              type="number"
+              placeholder="Nombre de timestep"
+              [formControl]="timestep"
+              class="form-control"
+            /><br />
+          </div>
+          <div class="form-group">
+            <label for="add_calc">Voulez-vous des calculs simplifiés :</label>
+            <input id="Oui" name="calc" type="checkbox" [formControl]="calc" />
+            <label for="True">Oui</label>
+            <br />
+          </div>
+          <div class="form-group">
+            <button
+              (click)="lancerSimu()"
+              id="btnLanceSim"
+              class="btn btn-success"
+              [disabled]="form.invalid"
+            >
+              Demarrer la simulation
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="attente">
+      <h1>Veuillez patienter...</h1>
+      <div>
+        <audio
+          controls
+          autoplay
+          id="musiqueAttente"
+          loop="True"
+          src="{{ source }}"
+        ></audio>
+        <select name="musiques" id="musiques" [(ngModel)]="source">
+          <option
+            value="http://localhost:8080/projetAstro/musiques/marmelade.mp3"
           >
-            Demarrer la simulation
-          </button>
-        </div>
-      </form>
+            Marmelade
+          </option>
+          <option
+            value="http://localhost:8080/projetAstro/musiques/swfrancais.mp3"
+          >
+            En bon François
+          </option>
+          <option
+            value="http://localhost:8080/projetAstro/musiques/sw_flute.mp3"
+          >
+            Flute
+          </option>
+          <option value="http://localhost:8080/projetAstro/musiques/alien.mp3">
+            Alien
+          </option>
+          <option
+            value="http://localhost:8080/projetAstro/musiques/expanse.mp3"
+          >
+            Expanse
+          </option>
+          <option
+            value="http://localhost:8080/projetAstro/musiques/rocketman.mp3"
+          >
+            RocketMan
+          </option>
+          <option value="http://localhost:8080/projetAstro/musiques/SpaOd.mp3">
+            SpaOd
+          </option>
+          <option
+            value="http://localhost:8080/projetAstro/musiques/capitaineFlam.mp3"
+          >
+            Capitaine Flam
+          </option>
+        </select>
+      </div>
+      <br />
+      <img
+        id="image"
+        width="1300"
+        height="600"
+        src="http://localhost:8080/projetAstro/img/TPT{{ cptImage }}.png"
+      />
     </div>
   </div>
-  <div *ngIf="attente">
-    <h1>Veuillez patienter...</h1>
-    <div>
-      <audio
-        controls
-        autoplay
-        id="musiqueAttente"
-        loop="True"
-        src="{{ source }}"
-      ></audio>
-      <select name="musiques" id="musiques" [(ngModel)]="source">
-        <option
-          value="http://localhost:8080/projetAstro/musiques/marmelade.mp3"
-        >
-          Marmelade
-        </option>
-        <option
-          value="http://localhost:8080/projetAstro/musiques/swfrancais.mp3"
-        >
-          En bon François
-        </option>
-        <option value="http://localhost:8080/projetAstro/musiques/sw_flute.mp3">
-          Flute
-        </option>
-        <option value="http://localhost:8080/projetAstro/musiques/alien.mp3">
-          Alien
-        </option>
-        <option value="http://localhost:8080/projetAstro/musiques/expanse.mp3">
-          Expanse
-        </option>
-        <option
-          value="http://localhost:8080/projetAstro/musiques/rocketman.mp3"
-        >
-          RocketMan
-        </option>
-        <option value="http://localhost:8080/projetAstro/musiques/SpaOd.mp3">
-          SpaOd
-        </option>
-        <option
-          value="http://localhost:8080/projetAstro/musiques/capitaineFlam.mp3"
-        >
-          Capitaine Flam
-        </option>
-      </select>
+  <footer [style.height]="f">
+    <div class="boxFooter" id="fLeft">
+      <a href="">Accueil</a> <a href="">Plan</a> <a href="">Contact</a>
+      <a href="">CGU</a>
     </div>
-    <br />
-    <img
-      id="image"
-      width="1500"
-      height="800"
-      src="http://localhost:8080/projetAstro/img/TPT{{ cptImage }}.png"
-    />
-  </div>
+    <div class="boxFooter boxFooterCenter" id="fRight">
+      <span> Copyrigth &#8471; 2021, made by Group 2!</span>
+    </div>
+  </footer>
 </body>
