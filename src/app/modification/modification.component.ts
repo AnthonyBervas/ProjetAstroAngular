@@ -1,3 +1,4 @@
+import { Satellite } from './../model/satellite';
 import { Planete } from './../model/planete';
 import { CorpsCeleste } from './../model/corps-celeste';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -104,6 +105,8 @@ export class ModificationComponent implements OnInit {
   // sat_update_id_plan.value = id;
   // sat_update_parent_id = parent_id;
   addSat(parent: CorpsCeleste) {
+    this.corps = new CorpsCeleste();
+    this.corps = new Satellite();
     this.hideForms();
     this.addFormSat = true;
     this.corps.type = 'Satellite';
