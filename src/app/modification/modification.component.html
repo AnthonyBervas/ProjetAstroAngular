@@ -20,7 +20,10 @@
     background-color: white;
   }
 
-  #content {
+  #center {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 500px;
     margin-left: 10px;
     color: white;
   }
@@ -36,9 +39,66 @@
     margin-left: 10px;
     display: none;
   }
+  #header {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+    background-size: 30%;
+    color: lightyellow;
+  }
+  #link {
+    color: white;
+  }
+  .row {
+    width: 105%;
+  }
+  footer {
+    align-self: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+  }
+  .boxFooter {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+  }
+
+  .boxFooterCenter {
+    left: 65%;
+  }
+  #fRight {
+    color: lightyellow;
+  }
+  #active-link {
+    color: white;
+    background-color: #b1bdd4;
+  }
+
+  a {
+    color: white;
+  }
 </style>
 
-<div id="content">
+<div id="header" class="container" [style.height]="h">
+  <div class="row align-self-center">
+    <nav class="nav nav-pills nav-fill">
+      <div class="row">
+        <div
+          class="col-4 align-self-center d-flex justify-content-center"
+        ></div>
+        <div class="col-4 align-self-center d-flex justify-content-center">
+          <a id="link" class="nav-link" href="menu">Retour</a>
+        </div>
+        <div
+          class="col-4 align-self-center d-flex justify-content-center"
+        ></div>
+      </div>
+    </nav>
+  </div>
+</div>
+<div id="center" [style.height]="c2">
   <div class="tab-content" id="pills-tabContent">
     <div
       class="tab-pane fade show active"
@@ -230,365 +290,15 @@
           <button class="btn btn-success" (click)="save()">Valider</button>
         </div>
       </div>
-      <!-- <div id="addFormPlan">
-        <h3>Ajouter nouvelle planete</h3>
-        <br />
-        <form action="addPlanet" method="post">
-          <input type="hidden" name="type_form" value="POST" />
-          <label for="add_nom">Nom :</label>
-          <input
-            required
-            id="add_nom"
-            name="nomInit"
-            type="text"
-            placeholder="Saisir le nom"
-          /><br />
-          <label for="add_masse">Masse :</label>
-          <input
-            required
-            id="add_masse"
-            name="masseInit"
-            type="number"
-            placeholder="Saisir la masse (kg)"
-          /><br />
-          <label for="add_taille">Diametre :</label>
-          <input
-            required
-            id="add_diametre"
-            name="diametreInit"
-            type="number"
-            placeholder="Saisir le diametre (km)"
-          /><br />
-          <label for="add_x">x0 :</label>
-          <input
-            required
-            id="add_x"
-            name="xInit"
-            type="number"
-            placeholder="Saisir la coordonnee x0 (km)"
-          /><br />
-          <label for="add_y">y0 :</label>
-          <input
-            required
-            id="add_y"
-            name="yInit"
-            type="number"
-            placeholder="Saisir la coordonnee y0 (km)"
-          /><br />
-          <label for="add_vx">vx0 :</label>
-          <input
-            required
-            id="add_vx"
-            name="vxInit"
-            type="number"
-            placeholder="Saisir la vitesse vx0 (km/s)"
-          /><br />
-          <label for="add_vy">vy0 :</label>
-          <input
-            required
-            id="add_vy"
-            name="vyInit"
-            type="number"
-            placeholder="Saisir la vitesse vy0 (km/s)"
-          /><br />
-          <label for="add_type"></label>
-          <input
-            id="add_type"
-            type="hidden"
-            name="typeInit"
-            value="Planete"
-          /><br />
-          <label for="add_id_parent"></label>
-          <input id="add_id_parent" type="hidden" name="id_parent" value="1" />
-
-          <input
-            class="btn btn-success"
-            type="submit"
-            name="ajouter"
-            value="Ajouter"
-          />
-        </form>
-      </div>
-
-      <div id="addFormSat">
-        <h3>Ajouter nouveau satellite</h3>
-        <br />
-        <form action="addSat" method="post">
-          <input type="hidden" name="type_form" value="POST" />
-          <label for="add_nom">Nom :</label>
-          <input
-            required
-            id="sat_add_nom"
-            name="nomInit"
-            type="text"
-            placeholder="Saisir le nom"
-          /><br />
-          <label for="add_masse">Masse :</label>
-          <input
-            required
-            id="sat_add_masse"
-            name="masseInit"
-            type="number"
-            placeholder="Saisir la masse (kg)"
-          /><br />
-          <label for="add_taille">Diametre :</label>
-          <input
-            required
-            id="sat_add_diametre"
-            name="diametreInit"
-            type="number"
-            placeholder="Saisir le diametre (km)"
-          /><br />
-          <label for="add_x">x0 :</label>
-          <input
-            required
-            id="sat_add_x"
-            name="xInit"
-            type="number"
-            placeholder="Saisir la coordonnee x0 (km)"
-          /><br />
-          <label for="add_y">y0 :</label>
-          <input
-            required
-            id="sat_add_y"
-            name="yInit"
-            type="number"
-            placeholder="Saisir la coordonnee y0 (km)"
-          /><br />
-          <label for="add_vx">vx0 :</label>
-          <input
-            required
-            id="sat_add_vx"
-            name="vxInit"
-            type="number"
-            placeholder="Saisir la vitesse vx0 (km/s)"
-          /><br />
-          <label for="add_vy">vy0 :</label>
-          <input
-            required
-            id="sat_add_vy"
-            name="vyInit"
-            type="number"
-            placeholder="Saisir la vitesse vy0 (km/s)"
-          /><br />
-          <label for="add_type"></label>
-          <input
-            id="sat_add_type"
-            type="hidden"
-            name="typeInit"
-            value="Satellite"
-          /><br />
-          <label for="add_id_parent"></label>
-          <input id="sat_add_id_parent" type="hidden" name="id_parent" />
-
-          <input
-            class="btn btn-success"
-            type="submit"
-            name="ajouter"
-            value="Ajouter"
-          />
-        </form>
-      </div>
-
-      <div id="updateFormEtoile">
-        <h3>Modifier l'etoile</h3>
-        <form action="updateEtoile" method="post">
-          <input type="hidden" name="type_form" value="PUT" />
-          <input type="hidden" id="update_id_etoile" name="id" />
-          <label for="update_nom">Nom :</label>
-          <input
-            required
-            id="etoile_update_nom"
-            name="nomInit"
-            type="text"
-            placeholder="Saisir le nom"
-          /><br />
-          <label for="update_masse">Masse :</label>
-          <input
-            required
-            id="etoile_update_masse"
-            name="masseInit"
-            type="number"
-            placeholder="Saisir la masse (km)"
-          /><br />
-          <label for="update_taille">Diametre :</label>
-          <input
-            required
-            id="etoile_update_diametre"
-            name="diametreInit"
-            type="number"
-            placeholder="Saisir le diametre (km)"
-          /><br />
-          <input
-            class="btn btn-warning"
-            type="submit"
-            name="modifier"
-            value="Modifier"
-          />
-        </form>
-      </div>
-
-      <div id="updateFormPlan">
-        <h3>Modifier la planete</h3>
-        <form action="updateCorps" method="post">
-          <input type="hidden" name="type_form" value="PUT" />
-          <input type="hidden" id="update_id_plan" name="id" />
-          <label for="update_nom">Nom :</label>
-          <input
-            required
-            id="update_nom"
-            name="nomInit"
-            type="text"
-            placeholder="Saisir le nom"
-          /><br />
-          <label for="update_masse">Masse :</label>
-          <input
-            required
-            id="update_masse"
-            name="masseInit"
-            type="number"
-            placeholder="Saisir la masse (km)"
-          /><br />
-          <label for="update_taille">Diametre :</label>
-          <input
-            required
-            id="update_diametre"
-            name="diametreInit"
-            type="number"
-            placeholder="Saisir le diametre (km)"
-          /><br />
-          <input
-            type="hidden"
-            id="update_type"
-            value="Planete"
-            name="typeInit"
-          />
-          <input
-            type="hidden"
-            id="update_parent_id"
-            name="id_parent"
-            value="1"
-          />
-          <label for="update_x">x0 :</label>
-          <input
-            required
-            id="update_x"
-            name="xInit"
-            type="number"
-            placeholder="Saisir la coordonnee x0 (km)"
-          /><br />
-          <label for="update_y">y0 :</label>
-          <input
-            required
-            id="update_y"
-            name="yInit"
-            type="number"
-            placeholder="Saisir la coordonnee y0 (km)"
-          /><br />
-          <label for="update_vx">vx0 :</label>
-          <input
-            required
-            id="update_vx"
-            name="vxInit"
-            type="number"
-            placeholder="Saisir la vitesse vx0 (km/s)"
-          /><br />
-          <label for="update_vy">vy0 :</label>
-          <input
-            required
-            id="update_vy"
-            name="vyInit"
-            type="number"
-            placeholder="Saisir la vitesse vy0 (km/s)"
-          /><br />
-          <input
-            class="btn btn-warning"
-            type="submit"
-            name="modifier"
-            value="Modifier"
-          />
-        </form>
-      </div>
-
-      <div id="updateFormSat">
-        <h3>Modifier le satellite</h3>
-        <form action="updateCorps" method="post">
-          <input type="hidden" name="type_form" value="PUT" />
-          <input type="hidden" id="sat_update_id_plan" name="id" />
-          <label for="update_nom">Nom :</label>
-          <input
-            required
-            id="sat_update_nom"
-            name="nomInit"
-            type="text"
-            placeholder="Saisir le nom"
-          /><br />
-          <label for="update_masse">Masse :</label>
-          <input
-            required
-            id="sat_update_masse"
-            name="masseInit"
-            type="number"
-            placeholder="Saisir la masse (km)"
-          /><br />
-          <label for="update_taille">Diametre :</label>
-          <input
-            required
-            id="sat_update_diametre"
-            name="diametreInit"
-            type="number"
-            placeholder="Saisir le diametre (km)"
-          /><br />
-          <input
-            type="hidden"
-            id="sat_update_type"
-            value="Satellite"
-            name="typeInit"
-          />
-          <label for="update_x">x0 :</label>
-          <input
-            required
-            id="sat_update_x"
-            name="xInit"
-            type="number"
-            placeholder="Saisir la coordonnee x0 (km)"
-          /><br />
-          <label for="update_y">y0 :</label>
-          <input
-            required
-            id="sat_update_y"
-            name="yInit"
-            type="number"
-            placeholder="Saisir la coordonnee y0 (km)"
-          /><br />
-          <label for="update_vx">vx0 :</label>
-          <input
-            required
-            id="sat_update_vx"
-            name="vxInit"
-            type="number"
-            placeholder="Saisir la vitesse vx0 (km/s)"
-          /><br />
-          <label for="update_vy">vy0 :</label>
-          <input
-            required
-            id="sat_update_vy"
-            name="vyInit"
-            type="number"
-            placeholder="Saisir la vitesse vy0 (km/s)"
-          /><br />
-
-          <input
-            class="btn btn-warning"
-            type="submit"
-            name="modifier"
-            value="Modifier"
-          />
-        </form>
-      </div> -->
-
-      <br />
-      <a style="color: yellow" href="menu">Retour</a>
     </div>
   </div>
 </div>
+<footer [style.height]="f">
+  <div class="boxFooter" id="fLeft">
+    <a href="">Accueil</a> <a href="">Plan</a> <a href="">Contact</a>
+    <a href="">CGU</a>
+  </div>
+  <div class="boxFooter boxFooterCenter" id="fRight">
+    <span> Copyrigth &#8471; 2021, made by Group 2!</span>
+  </div>
+</footer>
