@@ -6,7 +6,6 @@
   #header {
     display: flex;
     flex-wrap: wrap;
-    height: 45px;
     background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
     background-size: 30%;
     color: lightyellow;
@@ -15,7 +14,6 @@
   #center {
     display: flex;
     flex-wrap: wrap;
-    height: 74.5%;
     text-align: center;
   }
 
@@ -26,7 +24,6 @@
   footer {
     display: flex;
     flex-wrap: wrap;
-    height: 45px;
     width: 100%;
     background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
   }
@@ -67,7 +64,7 @@
 <html>
   <body>
     <div id="site">
-      <div id="header" class="container">
+      <div id="header" class="container" [style.height]="h">
         <div class="row align-self-center">
           <nav class="nav nav-pills nav-fill">
             <div class="row">
@@ -87,10 +84,10 @@
         </div>
       </div>
     </div>
-    <div id="center">
+    <div id="center" [style.height]="c">
       <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
     </div>
-    <footer>
+    <footer [style.height]="f">
       <div class="boxFooter" id="fLeft">
         <a href="">Accueil</a> <a href="">Plan</a> <a href="">Contact</a>
         <a href="">CGU</a>

@@ -12,8 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ModificationComponent implements OnInit {
   h: string = window.innerHeight * 0.05 + 'px';
-  c1: string = window.innerHeight * 0.9 + 'px';
-  c2: string = window.innerHeight * 1.2 + 'px';
+  c: string = window.innerHeight * 0.9 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
 
   system: CorpsCeleste[] = [];
@@ -72,6 +71,7 @@ export class ModificationComponent implements OnInit {
         this.hideForms();
         this.list();
         this.corps = new CorpsCeleste();
+        this.c = window.innerHeight * 0.9 + 'px';
       });
     } else {
       console.log('create');
@@ -79,6 +79,7 @@ export class ModificationComponent implements OnInit {
         this.hideForms();
         this.list();
         this.corps = new CorpsCeleste();
+        this.c = window.innerHeight * 0.9 + 'px';
       });
     }
   }
@@ -97,6 +98,7 @@ export class ModificationComponent implements OnInit {
       if (this.corps.type == 'Planete') {
         this.updateFormPlan = true;
       }
+      this.c = window.innerHeight * 1.2 + 'px';
     });
   }
 
@@ -110,6 +112,7 @@ export class ModificationComponent implements OnInit {
   // sat_update_id_plan.value = id;
   // sat_update_parent_id = parent_id;
   addSat(parent: CorpsCeleste) {
+    this.c = window.innerHeight * 1.2 + 'px';
     this.corps = new CorpsCeleste();
     this.corps = new Satellite();
     this.hideForms();
@@ -119,6 +122,7 @@ export class ModificationComponent implements OnInit {
   }
 
   addPlan() {
+    this.c = window.innerHeight * 1.2 + 'px';
     this.hideForms();
     this.corps = new Planete();
     this.addFormPlan = true;

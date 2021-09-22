@@ -1,8 +1,8 @@
 import { CanActivate } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {PositionService} from "../services/position.service";
-import {Position} from "../model/position";
-import {ServiceCorpsCelesteService} from "../services/service-corps-celeste.service";
+import { PositionService } from '../services/position.service';
+import { Position } from '../model/position';
+import { ServiceCorpsCelesteService } from '../services/service-corps-celeste.service';
 
 @Component({
   selector: 'app-result',
@@ -10,55 +10,79 @@ import {ServiceCorpsCelesteService} from "../services/service-corps-celeste.serv
   styleUrls: ['./result.component.css'],
 })
 export class ResultComponent implements OnInit {
-
+  h: string = window.innerHeight * 0.05 + 'px';
+  c: string = window.innerHeight * 0.9 + 'px';
+  f: string = window.innerHeight * 0.05 + 'px';
   positions: Position[][] = [];
   dataFormat: number[][][] = [];
   dataListX: number[] = [];
   dataListY: number[] = [];
   graph: any;
 
-  constructor(private positionService: PositionService, private serviceCorpsCeleste: ServiceCorpsCelesteService) {}
+  constructor(
+    private positionService: PositionService,
+    private serviceCorpsCeleste: ServiceCorpsCelesteService
+  ) {}
 
   ngOnInit(): void {
     this.getData();
   }
 
   getData() {
-    this.positionService.getPosition().subscribe((pos) =>{
-    this.positions = pos;
-    this.formatData(this.positions);
-    this.plotData();
+    this.positionService.getPosition().subscribe((pos) => {
+      this.positions = pos;
+      this.formatData(this.positions);
+      this.plotData();
     });
   }
 
-  formatData(positions: Position[][]){
-    positions.forEach((element) =>{
+  formatData(positions: Position[][]) {
+    positions.forEach((element) => {
       this.dataListX = [];
       this.dataListY = [];
-      element.forEach((posi) =>{
+      element.forEach((posi) => {
         this.dataListX.push(posi.x);
         this.dataListY.push(posi.y);
       });
-      this.dataFormat.push([this.dataListX,this.dataListY]);
+      this.dataFormat.push([this.dataListX, this.dataListY]);
     });
   }
 
-  plotData(){
-  this.graph = {
-    data: [
-      {x: 0, y: 0, type: 'scatter', mode: 'points', marker: {color: 'yellow'}, visible: false}
-    ],
-    layout: {width: 800, height: 800, title: 'A Spatial Simulation', xaxis:{title:{text:'Distance (km)'}}, yaxis:{title:{text:'Distance (km)'}}}
-  };
-  let i: number = 1;
-  this.dataFormat.forEach((res) =>{
-    this.serviceCorpsCeleste.get(i).subscribe((res1)=>{
-      let nameId: string = res1.nom;
-      this.graph.data.push({x: res[0], y: res[1], type: 'scatter', mode: 'points', name: nameId});
+  plotData() {
+    this.graph = {
+      data: [
+        {
+          x: 0,
+          y: 0,
+          type: 'scatter',
+          mode: 'points',
+          marker: { color: 'yellow' },
+          visible: false,
+        },
+      ],
+      layout: {
+        width: 800,
+        height: 800,
+        title: 'A Spatial Simulation',
+        xaxis: { title: { text: 'Distance (km)' } },
+        yaxis: { title: { text: 'Distance (km)' } },
+      },
+    };
+    let i: number = 1;
+    this.dataFormat.forEach((res) => {
+      this.serviceCorpsCeleste.get(i).subscribe((res1) => {
+        let nameId: string = res1.nom;
+        this.graph.data.push({
+          x: res[0],
+          y: res[1],
+          type: 'scatter',
+          mode: 'points',
+          name: nameId,
+        });
+      });
+      i++;
     });
-    i++;
-  });
-  console.log(this.graph);
-  return this.graph;
+    console.log(this.graph);
+    return this.graph;
   }
 }
