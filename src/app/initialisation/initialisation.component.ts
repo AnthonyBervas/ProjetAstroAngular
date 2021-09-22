@@ -19,7 +19,9 @@ export class InitialisationComponent implements OnInit {
   param: string = '';
   attente: boolean = false;
   cptImage: number = 1;
+  source: string = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
   audio = new Audio();
+
   constructor(
     private fb: FormBuilder,
     private ar: ActivatedRoute,
@@ -47,7 +49,7 @@ export class InitialisationComponent implements OnInit {
   }
 
   playAudio() {
-    this.audio.src = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
+    this.audio.src = this.source;
     this.audio.load();
     this.audio.loop;
     this.audio.play();
@@ -73,8 +75,15 @@ export class InitialisationComponent implements OnInit {
         this.router.navigate(['/result']);
         this.audio.pause();
       });
-    this.playAudio();
+    //this.playAudio();
     window.setInterval(() => this.changerImage(), 2000);
     //let interval = setInterval(this.changerImage(), 2000);
+  }
+
+  musique() {
+    console.log(this.source);
+    this.audio.pause;
+    this.audio.src = this.source;
+    this.audio.play;
   }
 }

@@ -38,15 +38,49 @@
           </button>
         </div>
       </form>
-      <audio
-        id="musiqueAttente"
-        loop
-        src="http://localhost:8080/projetAstro/musiques/marmelade.mp3"
-      ></audio>
     </div>
   </div>
   <div *ngIf="attente">
     <h1>Veuillez patienter...</h1>
+    <div>
+      <audio
+        controls
+        autoplay
+        id="musiqueAttente"
+        loop="True"
+        src="{{ source }}"
+      ></audio>
+      <select name="musiques" id="musiques" [(ngModel)]="source">
+        <option
+          value="http://localhost:8080/projetAstro/musiques/marmelade.mp3"
+        >
+          Marmelade
+        </option>
+        <option
+          value="http://localhost:8080/projetAstro/musiques/swfrancais.mp3"
+        >
+          En bon François
+        </option>
+        <option value="http://localhost:8080/projetAstro/musiques/sw_flute.mp3">
+          Flute
+        </option>
+        <option value="http://localhost:8080/projetAstro/musiques/alien.mp3">
+          Alien
+        </option>
+        <option value="http://localhost:8080/projetAstro/musiques/expanse.mp3">
+          Expanse
+        </option>
+        <option
+          value="http://localhost:8080/projetAstro/musiques/rocketman.mp3"
+        >
+          RocketMan
+        </option>
+        <option value="http://localhost:8080/projetAstro/musiques/SpaOd.mp3">
+          SpaOd
+        </option>
+      </select>
+      <button (click)="musique()">Lancer</button>
+    </div>
     <br />
     <img
       id="image"
