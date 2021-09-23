@@ -61,7 +61,7 @@ export class ResultComponent implements OnInit {
         },
       ],
       layout: {
-        width: 800,
+        width: 1000,
         height: 800,
         title: 'A Spatial Simulation',
         xaxis: { title: { text: 'Distance (km)' } },

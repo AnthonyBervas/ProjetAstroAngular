@@ -86,15 +86,18 @@
       </div>
     </div>
   </div>
+  <br/><br/><br/>
   <div id="center" [style.height]="c">
+    <div class="row justify-content-md-center">
+      <div class="col-4 align-self-center"></div>
+      <div class="col-6 d-flex justify-content-center">
     <div *ngIf="!attente">
-      <div class="card bg-secondary">
+      <div class="card bg-secondary text-center">
       <div class="card-header">
       <h5>Initialisation</h5>
       </div>
       <div class="card-body">
       <div id="addFormPlan">
-        <h3>Entrez les conditions de la simulation</h3>
         <form (ngSubmit)="lancerSimu()" [formGroup]="form">
           <input
             type="hidden"
@@ -117,10 +120,10 @@
             /><br />
           </div>
           <div class="form-group">
-            <label for="add_calc">Voulez-vous des calculs simplifiés :</label>
+            <label for="add_calc">Calculs simplifiés :&nbsp;</label>
             <input id="Oui" name="calc" type="checkbox" [formControl]="calc" />
             <label for="True">Oui</label>
-            <br />
+            <br/><br/>
           </div>
           <div class="form-group">
             <button
@@ -129,7 +132,7 @@
               class="btn btn-success"
               [disabled]="form.invalid"
             >
-              Demarrer la simulation
+              Lancer la simulation
             </button>
           </div>
         </form>
@@ -137,6 +140,10 @@
       </div>
       <div class="card-footer"><a id="link" class="nav-link" href="menu">Retour</a></div>
     </div>
+    </div>
+
+    </div>
+      <div class="col-4 align-self-center"></div>
     </div>
     <div *ngIf="attente">
       <h1>Veuillez patienter...</h1>
@@ -198,11 +205,11 @@
   </div>
   <footer [style.height]="f">
     <div class="boxFooter" id="fLeft">
-      <a href="">Accueil</a> <a href="">Plan</a> <a href="">Contact</a>
+      <a href="">Accueil&nbsp;</a> <a href="">Plan&nbsp;</a> <a href="">Contact&nbsp;</a>
       <a href="">CGU</a>
     </div>
     <div class="boxFooter boxFooterCenter" id="fRight">
-      <span> Copyrigth &#8471; 2021, made by Group 2!</span>
+      <span> Copyright &#8471; 2021, made by Group 2!</span>
     </div>
   </footer>
 </body>
