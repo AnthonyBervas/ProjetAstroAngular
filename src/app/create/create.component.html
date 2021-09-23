@@ -100,8 +100,9 @@
           <div
             class="col-4 align-self-center d-flex justify-content-center"
           ></div>
-          <div class="col-4 align-self-center d-flex justify-content-center">
-          </div>
+          <div
+            class="col-4 align-self-center d-flex justify-content-center"
+          ></div>
           <div
             class="col-4 align-self-center d-flex justify-content-center"
           ></div>
@@ -109,109 +110,142 @@
       </nav>
     </div>
   </div>
-<br/><br/><br/>
+  <br /><br /><br />
   <div id="center" [style.height]="c">
     <div class="row justify-content-md-center">
       <div class="col-4 align-self-center"></div>
       <div class="col-md-auto">
         <div class="card bg-secondary text-center">
-        <div id="addEtoile">
-          <div class="card-header">
-          <h5>Créez votre étoile</h5>
-          </div>
-          <form (ngSubmit)="createSystem()" [formGroup]="form">
-            <input type="hidden" name="type_form" value="POST" />
-            <div class="form-group">
-              <label for="add_nom">Nom :</label>
-              <input
-                required
-                id="add_nom"
-                name="nomInit"
-                type="text"
-                placeholder="Saisir le nom"
-                class="form-control"
-                [formControl]="nom"
-              /><br />
+          <div id="addEtoile">
+            <div class="card-header">
+              <h5>Créez votre étoile</h5>
             </div>
-            <div class="form-group">
-              <label for="add_masse">Masse (en kg) :&nbsp;</label>
-              <input
-                required
-                id="add_masse"
-                name="masseInit"
-                type="number"
-                placeholder="Saisir la masse"
-                [formControl]="masse"
-              /><br />
-            </div>
-            <div class="form-group">
-              <label for="add_diametre">Diametre (en km) :&nbsp;</label>
-              <input
-                required
-                id="add_diametre"
-                name="diametreInit"
-                type="number"
-                placeholder="Saisir le diametre"
-                [formControl]="diametre"
-              />
-            </div>
-            <div class="form-group">
-              <label for="add_type"></label>
-              <input
-                type="hidden"
-                name="typeInit"
-                value="Etoile"
-                class="form-control"
-              />
-              <div id="hidden1">
-                <div class="form-group" class="hidden1">
-                  <label for="add_x0"></label>
-                  <input type="hidden" name="xInit" value="0" />
+            <form (ngSubmit)="createSystem()" [formGroup]="form">
+              <input type="hidden" name="type_form" value="POST" />
+              <div class="form-group">
+                <label for="add_nom">Nom :</label>
+                <input
+                  required
+                  id="add_nom"
+                  name="nomInit"
+                  type="text"
+                  placeholder="Saisir le nom"
+                  class="form-control"
+                  [formControl]="nom"
+                />
+                <div
+                  class="alert alert-danger"
+                  *ngIf="nom.dirty && nom.hasError('required')"
+                >
+                  nom obligatoire
                 </div>
-                <div class="form-group" class="hidden1">
-                  <label for="add_y0"></label>
-                  <input type="hidden" name="yInit" value="0" />
+                <br />
+              </div>
+              <div class="form-group">
+                <label for="add_masse">Masse (en kg) :&nbsp;</label>
+                <input
+                  required
+                  id="add_masse"
+                  name="masseInit"
+                  type="number"
+                  placeholder="Saisir la masse"
+                  [formControl]="masse"
+                />
+                <div
+                  class="alert alert-danger"
+                  *ngIf="masse.dirty && masse.hasError('required')"
+                >
+                  masse obligatoire
                 </div>
-                <div class="form-group" class="hidden1">
-                  <label for="add_vx0"></label>
-                  <input type="hidden" name="vxInit" value="0" />
+                <div
+                  class="alert alert-danger"
+                  *ngIf="masse.dirty && masse.hasError('min')"
+                >
+                  la masse doit etre superieure a 1
                 </div>
-                <div class="form-group" class="hidden1">
-                  <label for="add_vy0"></label>
-                  <input type="hidden" name="vyInit" value="0" />
+                <br />
+              </div>
+              <div class="form-group">
+                <label for="add_diametre">Diametre (en km) :&nbsp;</label>
+                <input
+                  required
+                  id="add_diametre"
+                  name="diametreInit"
+                  type="number"
+                  placeholder="Saisir le diametre"
+                  [formControl]="diametre"
+                />
+                <div
+                  class="alert alert-danger"
+                  *ngIf="diametre.dirty && diametre.hasError('required')"
+                >
+                  diametre obligatoire
                 </div>
-                <div class="form-group" class="hidden1">
-                  <label for="add_id_parent"></label>
-                  <input type="hidden" name="id_parent" value="0" />
+                <div
+                  class="alert alert-danger"
+                  *ngIf="diametre.dirty && diametre.hasError('min')"
+                >
+                  le diametre doit etre superieure a 1
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <button
-                id="hideAddEtoile"
-                class="btn btn-success"
-                type="submit"
-                name="ajouter"
-                value="Ajouter"
-                [disabled]="form.invalid"
-              >
-                Ajouter
-              </button>
-            </div>
-          </form>
+              <div class="form-group">
+                <label for="add_type"></label>
+                <input
+                  type="hidden"
+                  name="typeInit"
+                  value="Etoile"
+                  class="form-control"
+                />
+                <div id="hidden1">
+                  <div class="form-group" class="hidden1">
+                    <label for="add_x0"></label>
+                    <input type="hidden" name="xInit" value="0" />
+                  </div>
+                  <div class="form-group" class="hidden1">
+                    <label for="add_y0"></label>
+                    <input type="hidden" name="yInit" value="0" />
+                  </div>
+                  <div class="form-group" class="hidden1">
+                    <label for="add_vx0"></label>
+                    <input type="hidden" name="vxInit" value="0" />
+                  </div>
+                  <div class="form-group" class="hidden1">
+                    <label for="add_vy0"></label>
+                    <input type="hidden" name="vyInit" value="0" />
+                  </div>
+                  <div class="form-group" class="hidden1">
+                    <label for="add_id_parent"></label>
+                    <input type="hidden" name="id_parent" value="0" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button
+                  id="hideAddEtoile"
+                  class="btn btn-success"
+                  type="submit"
+                  name="ajouter"
+                  value="Ajouter"
+                  [disabled]="form.invalid"
+                >
+                  Ajouter
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <a id="link" class="nav-link" href="menu">Retour</a>
+          </div>
         </div>
-          <div class="card-footer"><a id="link" class="nav-link" href="menu">Retour</a></div>
       </div>
-      </div>
-        </div>
-      <div class="col-4 align-self-center"></div>
     </div>
-
-
+    <div class="col-4 align-self-center"></div>
+  </div>
 
   <footer [style.height]="f">
     <div class="boxFooter" id="fLeft">
-      <a href="">Accueil&nbsp;</a> <a href="">Plan&nbsp;</a> <a href="">Contact&nbsp;</a>
+      <a href="">Accueil&nbsp;</a> <a href="">Plan&nbsp;</a>
+      <a href="">Contact&nbsp;</a>
       <a href="">CGU</a>
     </div>
     <div class="boxFooter boxFooterCenter" id="fRight">

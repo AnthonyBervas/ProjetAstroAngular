@@ -73,8 +73,7 @@
               ></div>
               <div
                 class="col-4 align-self-center d-flex justify-content-center"
-              >
-              </div>
+              ></div>
               <div
                 class="col-4 align-self-center d-flex justify-content-center"
               ></div>
@@ -89,10 +88,13 @@
         <div class="card text-center">
           <div class="card-header">Résultats de la simulation</div>
           <div class="card-body">
-      <plotly-plot [data]="graph.data" [layout]="graph.layout" [style]="{display: 'inline-block'}"></plotly-plot>
-    </div>
-        <div class="card-footer">
-        </div>
+            <plotly-plot
+              [data]="graph.data"
+              [layout]="graph.layout"
+              [style]="{ display: 'inline-block' }"
+            ></plotly-plot>
+          </div>
+          <div class="card-footer"></div>
           <a style="color: cornflowerblue" href="menu">Retour</a>
         </div>
       </div>
@@ -100,11 +102,13 @@
 
     <footer [style.height]="f">
       <div class="boxFooter" id="fLeft">
-        <a href="">Accueil&nbsp;</a><a href="">Plan&nbsp;</a><a href="">Contact&nbsp;</a><a href="">CGU</a>
+        <a href="">Accueil&nbsp;</a><a href="">Plan&nbsp;</a
+        ><a href="">Contact&nbsp;</a><a href="">CGU</a>
       </div>
       <div class="boxFooter boxFooterCenter" id="fRight">
         <span> Copyright &#8471; 2021, made by Group 2!</span>
       </div>
     </footer>
+    <br />
   </body>
 </html>
