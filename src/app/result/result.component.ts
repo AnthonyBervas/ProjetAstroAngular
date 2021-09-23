@@ -11,7 +11,7 @@ import { ServiceCorpsCelesteService } from '../services/service-corps-celeste.se
 })
 export class ResultComponent implements OnInit {
   h: string = window.innerHeight * 0.05 + 'px';
-  c: string = window.innerHeight * 0.9 + 'px';
+  c: string = window.innerHeight * 0.95 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
   positions: Position[][] = [];
   dataFormat: number[][][] = [];
