@@ -74,7 +74,6 @@
               <div
                 class="col-4 align-self-center d-flex justify-content-center"
               >
-                <a id="link" class="nav-link" href="menu">Retour</a>
               </div>
               <div
                 class="col-4 align-self-center d-flex justify-content-center"
@@ -84,16 +83,28 @@
         </div>
       </div>
     </div>
+
     <div id="center" [style.height]="c">
-      <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+      <div class="col align-self-center">
+        <div class="card text-center">
+          <div class="card-header">Résultats de la simulation</div>
+          <div class="card-body">
+      <plotly-plot [data]="graph.data" [layout]="graph.layout" [style]="{display: 'inline-block'}"></plotly-plot>
     </div>
+        </div>
+        <div class="card-footer">
+          <a style="color: cornflowerblue" href="menu">Retour</a>
+        </div>
+      </div>
+    </div>
+
     <footer [style.height]="f">
       <div class="boxFooter" id="fLeft">
         <a href="">Accueil</a> <a href="">Plan</a> <a href="">Contact</a>
         <a href="">CGU</a>
       </div>
       <div class="boxFooter boxFooterCenter" id="fRight">
-        <span> Copyrigth &#8471; 2021, made by Group 2!</span>
+        <span> Copyright &#8471; 2021, made by Group 2!</span>
       </div>
     </footer>
   </body>
