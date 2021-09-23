@@ -27,6 +27,7 @@ export class InitialisationComponent implements OnInit {
   iw: string = window.innerWidth * 0.7 + 'px';
   ih: string = window.innerHeight * 0.7 + 'px';
   ml: string = window.innerWidth * 0.15 + 'px';
+  t: string = window.innerHeight * 1.1 + 'px';
 
   constructor(
     private fb: FormBuilder,

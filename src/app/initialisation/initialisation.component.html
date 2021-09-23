@@ -3,6 +3,9 @@
 <style>
   body {
     background-color: black;
+    background-image: url("http://localhost:8080/projetAstro/img/StarfieldSimulation.gif");
+    background-repeat: no-repeat;
+    background-size: 1500px;
   }
 
   #header {
@@ -66,7 +69,7 @@
   }
 </style>
 
-<body>
+<body [style.height]="t">
   <div id="site">
     <div id="header" class="container" [style.height]="h">
       <div class="row align-self-center">

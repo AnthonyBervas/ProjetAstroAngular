@@ -21,6 +21,7 @@ export class CreateComponent implements OnInit {
   h: string = window.innerHeight * 0.05 + 'px';
   c: string = window.innerHeight * 0.9 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
+  t: string = window.innerHeight * 1.1 + 'px';
   constructor(
     private viewsService: ViewsService,
     private fb: FormBuilder,
