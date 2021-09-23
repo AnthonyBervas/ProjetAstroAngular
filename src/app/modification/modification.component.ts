@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./modification.component.css'],
 })
 export class ModificationComponent implements OnInit {
-  h: string = window.innerHeight * 0.05 + 'px';
-  c: string = window.innerHeight * 0.9 + 'px';
+  h: string = window.innerHeight * 0.09 + 'px';
+  c: string = window.innerHeight * 1.5 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
 
   system: CorpsCeleste[] = [];

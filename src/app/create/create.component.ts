@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
   idAuto: number;
   systemAuto: Planete[] = [];
   param: string = '';
-  h: string = window.innerHeight * 0.05 + 'px';
+  h: string = window.innerHeight * 0.09 + 'px';
   c: string = window.innerHeight * 0.9 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
   t: string = window.innerHeight * 1.1 + 'px';

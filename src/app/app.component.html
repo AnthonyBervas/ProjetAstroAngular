@@ -1,3 +1,72 @@
+<style>
+  body {
+    background-image: url("http://localhost:8080/projetAstro/img/StarfieldSimulation.gif");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  #header {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+    background-size: 30%;
+    color: lightyellow;
+  }
+
+  #center {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 450px;
+    margin-right: 500px;
+    text-align: center;
+  }
+
+  .row {
+    width: 105%;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+    background-image: url("http://localhost:8080/projetAstro/img/ciel.jpeg");
+  }
+
+  #text {
+    display: flex;
+    flex-wrap: wrap;
+    color: lightyellow;
+  }
+
+  #fRight {
+    color: lightyellow;
+  }
+
+  #link {
+    color: white;
+  }
+
+  #active-link {
+    color: white;
+    background-color: #b1bdd4;
+  }
+
+  a {
+    color: white;
+  }
+
+  .boxFooter {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+  }
+
+  .boxFooterCenter {
+    left: 65%;
+  }
+</style>
+
 <div [style.background-color]="'black'">
   <nav>
     <a
@@ -16,6 +85,44 @@
       style="color: lightyellow"
       >connexion</a
     >
+    <router-outlet></router-outlet>
+    <body *ngIf="!log">
+      <div id="center" [style.height]="c">
+        <div id="text" class="box">
+          <div>
+            <br />
+            <br />
+            <h2>Bienvenue sur AJCstrolab !</h2>
+            <p>
+              L'idee de cette application est de vous permettre de voir
+              l'evolution de votre propre systeme solaire! Pour cela, il vous
+              suffira juste de creer votre etoile et les planetes qui l'entoure!
+              Et ensuite d'apprecier la magie de la physique qui saura vous
+              montrer comment chaque planete evolue autour de votre etoile!
+            </p>
+            <p>
+              Choisissez un menu en tete de page pour commencer ou continuer
+              votre aventure spatiale!
+            </p>
+            <br />
+            <img
+              alt="photo systeme solaire"
+              src="http://localhost:8080/projetAstro/img/photofunky.gif"
+            />
+          </div>
+        </div>
+      </div>
+
+      <footer [style.height]="f">
+        <div class="boxFooter" id="fLeft">
+          <a href="">Accueil&nbsp;</a> <a href="">Plan&nbsp;</a>
+          <a href="">Contact&nbsp;</a>
+          <a href="">CGU</a>
+        </div>
+        <div class="boxFooter boxFooterCenter" id="fRight">
+          <span> Copyrigth &#8471; 2021, made by Group 2!</span>
+        </div>
+      </footer>
+    </body>
   </nav>
-  <router-outlet></router-outlet>
 </div>

@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  h: string = window.innerHeight * 0.05 + 'px';
+  h: string = window.innerHeight * 0.09 + 'px';
   c: string = window.innerHeight * 0.9 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
   constructor(private router: Router) {}
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/compte']);
+    this.router.navigate(['/']);
   }
 
   get log(): boolean {

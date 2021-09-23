@@ -72,7 +72,7 @@ export class InscriptionComponent implements OnInit {
       if (this.param) {
         this.router.navigate(['/' + this.param]);
       } else {
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/compte']);
       }
     });
   }

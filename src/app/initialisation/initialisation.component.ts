@@ -21,7 +21,7 @@ export class InitialisationComponent implements OnInit {
   cptImage: number = 1;
   source: string = 'http://localhost:8080/projetAstro/musiques/marmelade.mp3';
   audio = new Audio();
-  h: string = window.innerHeight * 0.05 + 'px';
+  h: string = window.innerHeight * 0.09 + 'px';
   c: string = window.innerHeight * 0.9 + 'px';
   f: string = window.innerHeight * 0.05 + 'px';
   iw: string = window.innerWidth * 0.7 + 'px';
